@@ -2,7 +2,16 @@
 <project version="18.0">
     <meta>
         <filters directoryPatterns="" filePatterns="SQFPresentation2016.xpr" positiveFilePatterns="" showHiddenFiles="false"/>
-        <options/>
+        <options>
+            <serialized version="18.0" xml:space="preserve">
+                <map>
+                    <entry>
+                        <String>keys.context</String>
+                        <String>file:/C:/Users/octavian_nadolu/Documents/userguide/DITA/chapter-import.ditamap</String>
+                    </entry>
+                </map>
+            </serialized>
+        </options>
     </meta>
     <projectTree name="SQFPresentation2016.xpr">
         <folder path="."/>
