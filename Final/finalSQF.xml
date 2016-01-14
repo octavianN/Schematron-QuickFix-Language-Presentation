@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="5.0">
+    <info>
+        <title>Schematron QuickFix</title>
+        <author>
+            <personname><firstname>Octavian</firstname>
+                <surname>Nadolu</surname></personname>
+            <affiliation>
+                <orgname>oXygen XML Editor</orgname>
+            </affiliation>
+            <email>octavian_nadolu@oxygenxml.com</email>
+        </author>
+        <author>
+            <personname><firstname>Nico</firstname>
+                <surname>Kutscherauer</surname></personname>
+            <affiliation>
+                <orgname>data2type GmbH</orgname>
+            </affiliation>
+            <email>kutscherauer@schematron-quickfix.com</email>
+            <email>kutscherauer@data2type.de</email>
+        </author>
+        <abstract>
+            <para>Fixing XML validation errors can be challenging for many users, especially if they
+                are not very familiar with XML syntax and structure. For many years, development
+                tools have provided ways to allow users to select actions that automatically fix
+                reported issues for certain programming languages (such as Java, C, etc.). This
+                functionality is usually called "Quick Fixes". In a similar way, XML tools provide
+                Quick Fixes for XML validation errors. For instance, Eclipse has included XML Quick
+                Fixes for over 10 years. Another example of this idea is the spell checking
+                functionality, which provides a list of possible corrections and allows the user to
+                select one of them as a replacement for an incorrect word.</para>
+            <para>The validation of XML documents against DTD, XML Schema, or RELAX NG schema
+                provides a limited set of possible problems and is usually only able to detect basic
+                structural errors (such as a missing element or attribute) and the corresponding
+                automatic fixes are usually rather straightforward. A more interesting case would be
+                if you are using Schematron to identify issues in XML documents, as the fixes in
+                this case may range from trivial to very complex and there is no automatic way of
+                fixing them.</para>
+            <para>Schematron solves the limitation that other types of schema have when validating
+                XML documents because it allows the schema author to define the errors and control
+                the messages that are presented to the user. Thus the validation errors are more
+                accessible to users and it ensures that they understand the problem. These messages
+                may also include hints for what the user can do to fix the problem, but this creates
+                a gap because the user still needs to manually correct the issue. This could cause
+                people to waste valuable time and creates the possibility of making additional
+                errors while trying to manually fix the reported problem. Providing a Quick Fix
+                functionality for Schematron validation errors will bridge this gap, saving time and
+                avoiding the potential for causing other issues.</para>
+            <para>Two years ago, the idea of Schematron QuickFix (SQF) was discussed during the XML
+                Prague conference and it started to take shape. It has now reached a point where we
+                have a draft specification available, a W3C community group dedicated to <link
+                    xlink:href="https://www.w3.org/community/quickfix/">XML Quick Fixes</link>, and
+                two independent SQF implementations. The first draft of the Schematron QuickFix
+                specification was published in April, 2015 and it is now available on <link
+                    xlink:href="http://schematron-quickfix.github.io/sqf">GitHub</link> and within
+                the W3C "Quick-Fix Support for XML Community Group".</para>
+            <para>Schematron QuickFix defines a simple language to specify the actions that will be
+                used to fix the detected issues, layered on top of XPath and XSLT, and integrated
+                within Schematron schemas through the Schematron annotation support.</para>
+            <para>In this session, we will present various use cases that are solved with Schematron
+                Quick Fixes, ranging from simple to complex, sometimes involving changes in multiple
+                locations within a document, or even in external documents. We will also discuss the
+                language and technological challenges related to the SQF implementation. Join us to
+                learn how SQF can be useful in your next XML project!</para>
+            <para> </para>
+        </abstract>
+    </info>
+    <sect1>
+        <title>Introduction</title>
+        <para>Helping users to solve errors from XML documents has always been a challenge. There
+            are various solutions to generate automatically the proposals that fixes the errors and
+            present them to the user. The fix proposals can be generated by the validation engine,
+            or based on the error messages, or on error codes that we get from the validation
+            engine. However, a language that can allow the developer to define fixes is more
+            powerful and flexible. </para>
+        <para>Schematron has become more and more popular in the XML world. Companies are using
+            Schematron to enforce business rules to their documents and to verify the quality of
+            their documents. Schematron schema is a language that defines rules for the structure
+            and content that an XML document should follow.</para>
+        <para>The Schematron QuickFix (SQF) has been developed as an extension of the Schematron
+            schema language. It is a language that allows users to define fixes for the Schematron
+            validation errors. </para>
+    </sect1>
+    <sect1>
+        <title>Validation errors</title>
+        <para>A validation error can be described by three things: the validation message, the
+            location of the error, and how to fix this error.</para>
+        <figure>
+            <title>validationError.png</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="validationError.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para>When an XML document is validated against an XSD, RNG or DTD schema, the error
+            messages refer more to the XML syntax of the document and are not easily understood by
+            the user. To fix this type of errors, the user must understand the validation messages,
+            check the location of the problems, and determine what operations must be done.</para>
+        <para>For the validation of an XML document against a Schematron schema, the errors are in
+            fact constraints or business rules and are meant to be more easily understood by the
+            user. The Schematron developer can better explain what operations should be done in
+            order to fix the problem because they can use custom messages. Also, the location of the
+            problem can be specified in the Schematron schema.</para>
+        <para>However, in both cases, to fix the error the user must do the operations manually and
+            this can result in generating even more errors. The automation of the error-fixing
+            process will help the user to solve the problem faster and with fewer errors.</para>
+        <para>A good example of error fixing is a spell checker. A spell checker presents errors but
+            also offers a set of solutions to fix them. Similarly, solutions can be generated for
+            the XML validation errors.</para>
+    </sect1>
+    <sect1>
+        <title>Fixing validation errors</title>
+        <para>During time different IDEs (like Eclipse or IntelliJ IDEA) have implemented fixes for
+            XML validation errors. In this cases the implementation was made directly in the engine.
+            However, it will be better to have an implementation that does not depend on the
+            validation engine. A way to solve this is by analyzing the validation message, error
+            code, and the error location that the engine provides.</para>
+        <para>We can say that the validation errors can be split in two categories</para>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    <para>Predefined - defined in the validation engine. This is the case when an
+                        XML document is validated against an XSD, RNG or DTD schema.</para>
+                </listitem>
+                <listitem>
+                    <para>Custom - defined by the user. When an XML document is validated against a
+                        Schematron schema.</para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <sect2>
+            <title>Fixing predefined errors</title>
+            <para>For the predefined errors, fixes can be provided automatically based on the
+                message, error code (if there is one), and location of the error. A limitation of
+                this approach can be that each validation engine can provide its own predefined
+                messages and error codes. So, you will need an implementation for each validation
+                engine.</para>
+            <para>However, by providing fix proposals for this type of errors the user will be
+                helped not only to solve the problem but also to understand it. The messages from
+                the validation processor are hard to be understood by basic users. An example can be
+                the case when an ID definition is missing:</para>
+            <para><errortext>cvc-id.1: There is no ID/IDREF binding for IDREF
+                    'robert.tayor'.</errortext>
+            </para>
+            <para>Will be more appropriate to have a more understandable message like "There is an
+                invalid ID reference 'robert.tayor'. Would you like to change it to a similar ID
+                'robert.taylor?' "</para>
+            <para>Another example can be when an XSL document is validated, and we have an
+                undeclared function. The following error will be presented:</para>
+            <para><errortext>XPST0017 XPath syntax error at char 0 on line 1802 near {...x($boxID,
+                    func:getButtonId(...}: Cannot find a matching 2-argument function named
+                    {http://www.oxygenxml.com/doc/xsl/functions}createBox()</errortext></para>
+            <para>In this case a more appropriate way to present the error ca be "The function
+                func:getButtonId() has not been defined. Would you like to create this function or
+                maybe to refer a function with a similar name?"</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="xslErr.png"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <?oxy_custom_start type="oxy_content_highlight" color="180,215,3"?>
+        </sect2>
+        <?oxy_custom_end?>
+        <sect2>
+            <title>Fixing custom errors</title>
+            <para>When an XML document is validated against a Schematron schema we obtain custom
+                errors. The errors are defined in the Schematron schema using the assert and report
+                elements. In this case, it is hard or maybe impossible to generate a fix based on
+                the error message and location. </para>
+            <para>So, a solution to propose fixes for this type of errors is to define the fixes
+                directly in the schema. The Schematron developer can create fixes and associate them
+                with the assert or report message.</para>
+            <para>This fixes can be defined using the annotations support from Schematron. In this
+                way the validation of the Schematron will not be affected if new elements and
+                attributes are added in the schema. Schematron allows elements and attributes from
+                other namespaces to be added as annotations in the schema.</para>
+        </sect2>
+    </sect1>
+    <sect1>
+        <title>Schematron quick fixes</title>
+        <para>Using the Schematron QuickFix (SQF) language users can define fixes for assert or
+            report error messages. In this way he can create their own custom actions to solve the
+            problems.</para>
+        <para>The Schematron QuickFix has been defined as a simple but powerful language. It defines
+            some basic operation that needs to be implemented by the processor.</para>
+        <para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="sqf_Lang.png" valign="middle" align="center"/>
+                </imageobject>
+            </mediaobject>
+        </para>
+        <para>The operation can be done punctual in the specified place, you don't need to modify
+            the entire document.</para>
+        <para>The first draft was published in April 2015 on W3C community group</para>
+        <sect2>
+            <title>SQF benefits</title>
+            <para>The Schematron schema can be used to validate any type of XML documents. So
+                business rules or constraints can be defined for projects containing DITA, DocBook
+                or TEI documents but also for Stylesheets or XML Schemas.</para>
+            <para>For DITA, DocBook or TEI documents simple styling rules can be imposed,
+                like:</para>
+            <itemizedlist>
+                <listitem>
+                    <para>The title should not contain bold.</para>
+                </listitem>
+                <listitem>
+                    <para>A list should contain more than one list item.</para>
+                </listitem>
+            </itemizedlist>
+            <para>But, can be added also more complex ones, like: <itemizedlist>
+                    <listitem>
+                        <para>Ensure that the table layout is correct.</para>
+                    </listitem>
+                    <listitem>
+                        <para>All text needs to be normalized (NFC).</para>
+                    </listitem>
+                </itemizedlist></para>
+            <para>For XSLT, XSD or RNG documents you can define coding style, like: </para>
+            <itemizedlist>
+                <listitem>
+                    <para>The name of the variables must not contain '-', and it is recommended to
+                        be camel case.</para>
+                </listitem>
+                <listitem>
+                    <para>The templates, functions name length.</para>
+                </listitem>
+                <listitem>
+                    <para>etc.</para>
+                </listitem>
+            </itemizedlist>
+            <para>Some of these rules can be solved very easily, but a user without experience can
+                make mistakes and add other errors. On the other part a user with experience can
+                solve it but needs to perform a couple of operations.</para>
+            <para>For more complex problems, that will update multiple nodes in the document or make
+                complex conversions will be better to have an action to do this
+                autocratically.</para>
+        </sect2>
+        <sect2>
+            <title>SQF implementations</title>
+            <para>There are two types of implementations that can be used to execute Schematron
+                Quick Fixes.</para>
+        </sect2>
+    </sect1>
+    <sect1>
+        <title>Schematron QuickFix language</title>
+        <para>Nico</para>
+    </sect1>
+    <sect1>
+        <title>Projects using SQF</title>
+        <para>DIM project <link xlink:href="https://github.com/oxygenxml/dim"
+                >https://github.com/oxygenxml/dim</link>
+        </para>
+        <para>TEI <link xlink:href="http://wiki.tei-c.org/index.php/Category:Schematron"
+                >http://wiki.tei-c.org/index.php/Category:Schematron</link>
+        </para>
+        <para>&lt;oXygen/> DITA framework </para>
+        <para>&lt;oXygen/> User Manual <link xlink:href="https://github.com/oxygenxml/userguide"
+                >https://github.com/oxygenxml/userguide</link>
+        </para>
+    </sect1>
+    <sect1>
+        <title>Conclusions and future work</title>
+        <para>Publish the second draft of the Schematron QuickFix specification, that will contain
+            new things like how you can execute fixes on other documents and new definitions and
+            examples for the SQF elements.</para>
+        <para>Based on the discussion and feedback that we got on <link
+                xlink:href="https://github.com/schematron-quickfix/sqf">SQF GitHub project</link> we
+            intend to update the specification and add other elements or change their behavior. An
+            example can be the call-fix element that will be able to refer a group of operations or
+            the possibility to generate the fixes dynamically.</para>
+    </sect1>
+</article>
