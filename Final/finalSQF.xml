@@ -86,10 +86,19 @@
     </sect1>
     <sect1>
         <title>Validation Errors</title>
-        <para>A validation error can be described by three things: the validation message, the
-            location of the error, and how to fix this error.</para>
+        <para>From the user point of view the validation error can be described by three things: the
+            validation message, the location of the error (system ID and position in the document),
+            and how to fix this error.</para>
         <figure>
-            <title>validationError.png</title>
+            <title>Validation Errors</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="validationErrorMsg.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <figure>
+            <title>Validation Error Description</title>
             <mediaobject>
                 <imageobject>
                     <imagedata fileref="validationError.png"/>
