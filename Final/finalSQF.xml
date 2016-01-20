@@ -60,11 +60,7 @@
             <para>Schematron QuickFix defines a simple language to specify the actions that will be
                 used to fix the detected issues, layered on top of XPath and XSLT, and integrated
                 within Schematron schemas through the Schematron annotation support.</para>
-            <para>In this session, we will present various use cases that are solved with Schematron
-                Quick Fixes, ranging from simple to complex, sometimes involving changes in multiple
-                locations within a document, or even in external documents. We will also discuss the
-                language and technological challenges related to the SQF implementation. Join us to
-                learn how SQF can be useful in your next XML project!</para>
+            <para>In this session, we will present various use cases that are solved with Schematron Quick<?oxy_delete author="Nico Kutscherauer" timestamp="20160118T112326+0100" content=" "?>Fixes, ranging from simple to complex, sometimes involving changes in multiple locations within a document, or even in external documents. We will also discuss the language and technological challenges related to the SQF implementation. Join us to learn how SQF can be useful in your next XML project!</para>
             <para> </para>
         </abstract>
     </info>
@@ -80,9 +76,7 @@
             Schematron to enforce business rules to their documents and to verify the quality of
             their documents. Schematron schema is a language that defines rules for the structure
             and content that an XML document should follow.</para>
-        <para>The Schematron QuickFix (SQF) has been developed as an extension of the Schematron
-            schema language. It is a language that allows users to define fixes for the Schematron
-            validation errors. </para>
+        <para>The Schematron QuickFix (SQF) has been developed as an extension of the Schematron schema language. It is a language that allows <?oxy_delete author="Nico Kutscherauer" timestamp="20160118T114614+0100" content="users"?><?oxy_insert_start author="Nico Kutscherauer" timestamp="20160118T114615+0100"?>developers<?oxy_insert_end?> to define fixes for the Schematron validation errors. </para>
     </sect1>
     <sect1>
         <title>Validation Errors</title>
@@ -132,12 +126,12 @@
         <para>
             <itemizedlist>
                 <listitem>
-                    <para>Predefined - defined in the validation engine. This is the case when an
-                        XML document is validated against an XSD, RNG, or DTD schema.</para>
+                    <para>Predefined<?oxy_delete author="Nico Kutscherauer" timestamp="20160120T124555+0100" content=" - "?><?oxy_insert_start author="Nico Kutscherauer" timestamp="20160120T124555+0100"?> &#x2013;
+                        <?oxy_insert_end?>defined in the validation engine. This is the case when an XML document is validated against an XSD, RNG, or DTD schema.</para>
                 </listitem>
                 <listitem>
-                    <para>Custom - defined by the user. When an XML document is validated against a
-                        Schematron schema.</para>
+                    <para>Custom<?oxy_delete author="Nico Kutscherauer" timestamp="20160120T124557+0100" content=" - "?><?oxy_insert_start author="Nico Kutscherauer" timestamp="20160120T124557+0100"?> &#x2013;
+                        <?oxy_insert_end?>defined by the user. When an XML document is validated against a Schematron schema.</para>
                 </listitem>
             </itemizedlist>
         </para>
@@ -177,11 +171,7 @@
         <?oxy_custom_end?>
         <sect2>
             <title>Fixing Custom Errors</title>
-            <para>When an XML document is validated against a Schematron schema, we obtain our own
-                customized errors. The errors are defined in the Schematron schema using the
-                    <emphasis>assert</emphasis> and <emphasis>report</emphasis> elements. In this
-                case, it is difficult, and sometimes impossible, to generate a fix based on the
-                error message and location. </para>
+            <para>When an XML document is validated against a Schematron schema, we obtain our own customized errors. The errors are defined in the Schematron schema using the <?oxy_insert_start author="Nico Kutscherauer" timestamp="20160120T204807+0100"?><code>sch:assert</code><?oxy_insert_end?><?oxy_delete author="Nico Kutscherauer" timestamp="20160120T204803+0100" content="&lt;emphasis&gt;assert&lt;/emphasis&gt;"?> and <?oxy_insert_start author="Nico Kutscherauer" timestamp="20160120T204833+0100"?><code>sch:report</code><?oxy_insert_end?><?oxy_delete author="Nico Kutscherauer" timestamp="20160120T204830+0100" content="&lt;emphasis&gt;report&lt;/emphasis&gt;"?> elements. In this case, it is difficult, and <?oxy_delete author="Nico Kutscherauer" timestamp="20160118T115457+0100" content="sometimes"?><?oxy_insert_start author="Nico Kutscherauer" timestamp="20160118T115457+0100"?>in many cases<?oxy_insert_end?> impossible, to generate a fix based on the error message and location. </para>
             <para>Therefore, a solution to propose fixes for this type of errors is to define the
                 fixes directly in the schema. A Schematron developer can create fixes and associate
                 them with the <emphasis>assert</emphasis> or <emphasis>report</emphasis> message.<mediaobject>
@@ -197,31 +187,25 @@
     </sect1>
     <sect1>
         <title>Schematron Quick Fixes</title>
-        <para>To allow users to create fixes for the Schematron error messages, the Schematron
-            QuickFix (SQF) language was created as an extension of Schematron. Using the SQF
-            language, users can define fixes for <emphasis>assert</emphasis> or
-                <emphasis>report</emphasis> error messages. </para>
-        <para>The Schematron QuickFix has been defined as a simple but powerful language. It defines
-            some basic operations that needs to be implemented by the processor.</para>
-        <para>
+        <para>To allow users to create fixes for the Schematron error messages, the Schematron QuickFix (SQF) language was created as an extension of Schematron. Using the SQF language, users can define fixes for <emphasis>assert</emphasis> or <emphasis>report</emphasis> error messages. </para>
+        <para>The Schematron QuickFix has been defined as a simple but powerful language. It defines some basic operations that needs to be implemented by the processor.</para>
+        <?oxy_insert_start author="Nico Kutscherauer" timestamp="20160118T153010+0100"?>
+        <figure xml:id="simple_example">
+            <title>Simple Schematron QuickFix example</title>
             <mediaobject>
                 <imageobject>
                     <imagedata fileref="sqf_Lang1.png"/>
                 </imageobject>
             </mediaobject>
-        </para>
-        <para>The operations can be done with precision in a specified place and you do not need to
-            modify the entire document.</para>
-        <para>The first draft of the Schematron QuickFix specification was published in April 2015
-            on the <link xlink:href="https://www.w3.org/community/quickfix/">W3C community
-                group</link> page.</para>
+        </figure>
+        <?oxy_insert_end?>
+        <?oxy_delete author="Nico Kutscherauer" timestamp="20160118T153057+0100" content="&lt;para&gt;&lt;mediaobject&gt;&lt;imageobject&gt;&lt;imagedata fileref=&quot;sqf_Lang1.png&quot;/&gt;&lt;/imageobject&gt;&lt;/mediaobject&gt;&lt;/para&gt;"?>
+        <para>The operations can be done with precision in a specified place and you do not need to modify the entire document.</para>
+        <para>The first draft of the Schematron QuickFix specification was published in April 2015 on the <link xlink:href="https://www.w3.org/community/quickfix/">W3C community group</link> page.</para>
         <sect2>
             <title>SQF Benefits</title>
-            <para>The Schematron schema can be used to validate any type of XML document. Thus,
-                business rules or constraints can be defined for projects containing DITA, DocBook,
-                XHTML, or TEI documents, and also for stylesheets or XML Schemas.</para>
-            <para>For DITA, DocBook, XHTML, or TEI documents, simple styling rules can be imposed,
-                such as:</para>
+            <para>The Schematron schema can be used to validate any type of XML document. Thus, business rules or constraints can be defined for projects containing DITA, DocBook, XHTML, or TEI documents, and also for stylesheets or XML Schemas.</para>
+            <para>For DITA, DocBook, XHTML, or TEI documents, simple styling rules can be imposed, such as:</para>
             <itemizedlist>
                 <listitem>
                     <para>The title should not contain bold.</para>
@@ -241,75 +225,421 @@
             <para>For XSLT, XSD, or RNG documents, you can define coding styles, such as: </para>
             <itemizedlist>
                 <listitem>
-                    <para>The name of the variables must not contain '-', and it is recommended to
-                        be camel case.</para>
+                    <para>The name of the variables must not contain '-', and it is recommended to be camel case.</para>
                 </listitem>
                 <listitem>
-                    <para>The name length of templates and functions should not exceed a specified
-                        value.</para>
+                    <para>The name length of templates and functions should not exceed a specified value.</para>
                 </listitem>
             </itemizedlist>
-            <para>Some of these rules can be solved very easily, while a less experienced user might
-                make mistakes and add other errors. On the other hand, a user with experience might
-                be able solve them rather easily, but might need to perform a few operations.</para>
-            <para>For more complex problems (for instance, problems that will update multiple nodes
-                in the document or make complex conversions), it would be better to have an action
-                to do this automatically.</para>
+            <para>Some of these rules can be solved very easily, while a less experienced user might make mistakes and add other errors. On the other hand, a user with experience might be able solve them rather easily, but might need to perform a few operations.</para>
+            <para>For more complex problems (for instance, problems that will update multiple nodes in the document or make complex conversions), it would be better to have an action to do this automatically.</para>
         </sect2>
         <sect2>
             <title>SQF Implementations</title>
-            <para>An SQF fix consists of a set of operations that must be performed in an XML
-                document. These are basic operations (add, delete, replace, and string replace) that
-                needs to make precise changes in the document. This means that when a quick fix is
-                applied, only the affected part of the XML document should be changed and the
-                DOCTYPE declaration, entities, etc. must be preserved.</para>
-            <para>There are two types of implementations that can be used to execute Schematron
-                Quick Fixes:<itemizedlist>
+            <para>A<?oxy_delete author="Nico Kutscherauer" timestamp="20160118T120617+0100" content="n"?> SQF fix consists of a set of operations that must be performed in an XML document. These are basic operations (add, delete, replace, and string replace) that needs to make precise changes in the document. This means that when a quick fix is applied, only the affected part of the XML document should be changed and the DOCTYPE declaration, entities, etc. must be preserved.</para>
+            <para>There are two types of implementations that can be used to execute Schematron Quick Fixes:<itemizedlist>
                     <listitem>
-                        <para>Using an engine (implemented in Java, C, or other language) that will
-                            collect the fixes during the Schematron validation process, and will
-                            perform the modification precisely (using the engine programming
-                            language) when the fix is applied. </para>
+                        <para>Using an engine (implemented in Java, C, or other language) that will collect the fixes during the Schematron validation process, and will perform the modification precisely (using the engine programming language) when the fix is applied. </para>
                     </listitem>
                     <listitem>
-                        <para>Using an XSLT engine that will generate a set of XSLT scripts during
-                            the Schematron validation process, and these scripts will be applied
-                            when the fix is executed.</para>
+                        <para>Using an XSLT engine that will generate a set of XSLT scripts during the Schematron validation process, and these scripts will be applied when the fix is executed.</para>
                     </listitem>
                 </itemizedlist></para>
         </sect2>
     </sect1>
     <sect1>
         <title>Schematron QuickFix Language</title>
-        <para><?oxy_custom_start type="oxy_content_highlight" color="255,255,0"?>Nico<?oxy_custom_end?></para>
+        <?oxy_delete author="Nico Kutscherauer" timestamp="20160118T140124+0100" content="&lt;para&gt;Nico&lt;/para&gt;"?>
+        <?oxy_insert_start author="Nico Kutscherauer" timestamp="20160118T120632+0100"?>
+        <para>As in the example above (see <xref linkend="simple_example"/>) already shown, the QuickFix, defined by the <code>sqf:fix</code> element, is structured as follows: </para>
+        <itemizedlist>
+            <listitem>
+                <para><emphasis>ID</emphasis></para>
+                <para>The ID is to reference the QuickFix by <code>sch:assert</code> or <code>sch:report</code> elements.</para>
+            </listitem>
+            <listitem>
+                <para><emphasis>Title and description</emphasis></para>
+                <para>The title is to describe the user, the operation of the QuickFix, by a short label. The optional description can be used as additional information for the user.</para>
+            </listitem>
+            <listitem>
+                <para><emphasis>Operation</emphasis></para>
+                <para>The operation or Activity Elements specifies the actions of the QuickFix.</para>
+            </listitem>
+            <listitem>
+                <para><emphasis>Additional features</emphasis></para>
+                <para>There are also some additional features, which had no place in the simple example, like User Entries and use-when conditions.</para>
+            </listitem>
+        </itemizedlist>
+        <sect2>
+            <title>Reference a QuickFix</title>
+            <para>To reference a QuickFix the <code>sch:assert</code> or <code>sch:report</code> element needs a <code>sqf:fix</code> attribute with the ID of the QuickFix. As there is in many cases multiple possible solutions for one error, the <code>sqf:fix</code> attribute is able to reference to more than one QuickFixes. In this cases the <code>sqf:fix</code> attribute should have a whitespace separated list of those QuickFix IDs who should be referenced:</para>
+            <example>
+                <title>Reference to multipe QuickFixes</title>
+                <programlisting>&lt;sch:rule context="title">
+    &lt;sch:report test="exists(b)" 
+                sqf:fix="<emphasis role="bold">resolveBold deleteBold</emphasis>"> 
+Bold element is not allowed in title.&lt;/sch:report>
+    &lt;sqf:fix id="<emphasis role="bold">resolveBold</emphasis>">
+        &lt;sqf:description>
+            &lt;sqf:title>Change the bold element into text
+            &lt;/sqf:title>
+            &lt;sqf:p>Remove the bold (b) markup and keeps the 
+                   text content&lt;/sqf:p>
+        &lt;/sqf:description>
+        &lt;sqf:replace match="b" select="text()"/>
+    &lt;/sqf:fix>
+    &lt;sqf:fix id="<emphasis role="bold">deleteBold</emphasis>">
+        &lt;sqf:description>
+            &lt;sqf:title>Delete the bold element&lt;/sqf:title>
+            &lt;sqf:p>Remove the bold (b) markup including the 
+                   text content&lt;/sqf:p>
+        &lt;/sqf:description>
+        &lt;sqf:delete match="b"/>
+    &lt;/sqf:fix>
+&lt;/sch:rule></programlisting>
+            </example>
+            <sect3>
+                <title>Scope</title>
+                <para>The referenced QuickFix needs to be in the scope of the <code>sch:report</code> or <code>sch:assert</code> element. It is in the scope, if the <code>sqf:fix</code> element is a child of the same <code>sch:rule</code> element, which contains the <code>sch:report</code> element or if the QuickFix was defined global. To define a QuickFix global, the top level element <code>sqf:fixes</code> is able to contain <code>sqf:fix</code> elements. QuickFixes, which are specified in this way, are available for all <code>sch:report</code> or <code>sch:assert</code> elements of the schema. </para>
+                <example>
+                    <title>Global QuickFixes</title>
+                    <programlisting>&lt;sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" 
+xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+queryBinding="xslt2">
+    &lt;sch:pattern>
+        &lt;sch:rule context="title">
+            &lt;sch:report test="exists(b)" 
+                        sqf:fix="resolveBold deleteBold"> 
+            Bold element is not allowed in title.&lt;/sch:report>
+        &lt;/sch:rule>
+    &lt;/sch:pattern>
+    <emphasis role="bold">&lt;sqf:fixes></emphasis>
+        &lt;sqf:fix id="resolveBold">
+            &lt;sqf:description>
+                &lt;sqf:title>Change the bold element into text
+                &lt;/sqf:title>
+                &lt;sqf:p>Remove the bold (b) markup and keeps the 
+                       text content&lt;/sqf:p>
+            &lt;/sqf:description>
+            &lt;sqf:replace match="b" select="text()"/>
+        &lt;/sqf:fix>
+        &lt;sqf:fix id="deleteBold">
+            &lt;sqf:description>
+                &lt;sqf:title>Delete the bold element&lt;/sqf:title>
+                &lt;sqf:p>Remove the bold (b) markup including the 
+                       text content&lt;/sqf:p>
+            &lt;/sqf:description>
+            &lt;sqf:delete match="b"/>
+        &lt;/sqf:fix>
+    <emphasis role="bold">&lt;/sqf:fixes></emphasis>
+&lt;/sch:schema></programlisting>
+                </example>
+            </sect3>
+            <sect3>
+                <title>QuickFix groups</title>
+                <para>To avoid long lists of IDs, it is posible to reference to a QuickFix group. A QuickFix group is a set of QuickFixes. A reference to a QuickFix group is equal to reference to each QuickFix of this group. </para>
+                <example>
+                    <title>Reference to a QuickFix group</title>
+                    <programlisting>&lt;sch:report test="exists(b)" 
+    <emphasis role="bold">sqf:fix="bold"</emphasis>> 
+    Bold element is not allowed in title.&lt;/sch:report><emphasis role="bold">
+&lt;sqf:group id="bold"></emphasis>
+    &lt;sqf:fix id="resolveBold">
+        &lt;sqf:description>
+            &lt;sqf:title>Change the bold element into text
+            &lt;/sqf:title>
+            &lt;sqf:p>Remove the bold (b) markup and keeps the 
+                text content&lt;/sqf:p>
+        &lt;/sqf:description>
+        &lt;sqf:replace match="b" select="text()"/>
+    &lt;/sqf:fix>
+    &lt;sqf:fix id="deleteBold">
+        &lt;sqf:description>
+            &lt;sqf:title>Delete the bold element&lt;/sqf:title>
+            &lt;sqf:p>Remove the bold (b) markup including the 
+                text content&lt;/sqf:p>
+        &lt;/sqf:description>
+        &lt;sqf:delete match="b"/>
+    &lt;/sqf:fix><emphasis role="bold">
+&lt;/sqf:group></emphasis></programlisting>
+                    <para>To reference to a QuickFix group, the <code>sqf:group</code> element has also an <code>id</code> attribute. There is no difference for the <code>sch:assert</code> or <code>sch:report</code> elements between referencing to a QuickFix and referencing to a QuickFix group.</para>
+                </example>
+                <para>A QuickFix group can also be defined global (in a <code>sqf:fixes</code> element) or local (in a <code>sch:rule</code> element).</para>
+            </sect3>
+        </sect2>
+        <sect2>
+            <title>Title and description</title>
+            <para>The title (<code>sqf:title</code> element) is very important of a QuickFix. It is the challange of the developer to create short titles which provides the user enough information to understand what will happen, when the QuickFix is executed. As an additional tool, the developer is able to deliver more informations by <code>sqf:p</code> elements.</para>
+            <para>Also, like the Schematron error message, the title and the additional description is customizable, by using the Schematron elements <code>sch:value-of</code> or <code>sch:name</code>.</para>
+            <example>
+                <title>Customized title and description</title>
+                <para>This QuickFix deletes the context node of the error (matched by the <code>sch:rule</code> element). This is a common solution and specified in this way it can be reused for different contexts:</para>
+                <programlisting>&lt;sqf:fix id="delete">
+    &lt;sqf:description>
+        &lt;sqf:title>Delete the <emphasis role="bold">&lt;sch:name/></emphasis> element&lt;/sqf:title>
+        &lt;sqf:p>The <emphasis role="bold">&lt;sch:name/></emphasis> element was missplaced in the 
+               <emphasis role="bold">&lt;sch:name path=".."/></emphasis> element.&lt;/sqf:p>
+        &lt;sqf:p>This QuickFix will delete the <emphasis role="bold">&lt;sch:name/></emphasis> 
+               element<emphasis role="bold">&lt;sch:value-of select="
+               if (./node()) 
+             then ' with all its content.' 
+             else '.'"/></emphasis>
+        &lt;/sqf:p>
+    &lt;/sqf:description>
+    &lt;sqf:delete/>
+&lt;/sqf:fix></programlisting>
+            </example>
+        </sect2>
+        <sect2>
+            <title>Activity Elements</title>
+            <para>After the description, the developer should now specify what the QuickFix should actually do. To define actions, the developer is able to choose between four kind of Activity Elements. </para>
+            <para>The developer can also add any number of Activity Elements from the same or different kinds to one QuickFix. Each Activity Element will be executed separately, in the context of the node, which was the context of the error (matched by the <code>sch:rule</code> element).</para>
+            <para>All Activity Elements have a <code>match</code> attribute to select nodes by XPath, relative to the context node of the error. These nodes are called anchor nodes. The kind of processing of the anchor nodes depends on the kind, additional attributs and the content of the Activity element. An Activity Element which has no <code>match</code> attribute, selects the context of the error as its anchor node.</para>
+            <para>This are the four Activity Elements:</para>
+            <itemizedlist>
+                <listitem>
+                    <para><code>sqf:delete</code></para>
+                </listitem>
+                <listitem>
+                    <para><code>sqf:replace</code></para>
+                </listitem>
+            </itemizedlist>
+            <itemizedlist>
+                <listitem>
+                    <para><code>sqf:add</code></para>
+                </listitem>
+                <listitem>
+                    <para><code>sqf:stringReplace</code></para>
+                </listitem>
+            </itemizedlist>
+            <sect3>
+                <title>Delete nodes</title>
+                <para>The delete action is the simplest kind of the Activity elements. The <code>sqf:delete</code> element deletes the anchor nodes.</para>
+                <example>
+                    <title>Delete the error context</title>
+                    <programlisting>&lt;sch:rule context="p">
+    &lt;sch:report test="normalize-space(.) = ''" 
+        sqf:fix="delete"> 
+        &lt;sch:name/> element without text is not allowed.&lt;/sch:report>
+    &lt;sqf:fix id="delete">
+        &lt;sqf:description>
+            &lt;sqf:title>Delete the &lt;sch:name/> element&lt;/sqf:title>
+        &lt;/sqf:description>
+        <emphasis role="bold">&lt;sqf:delete/></emphasis>
+    &lt;/sqf:fix>
+&lt;/sch:rule></programlisting>
+                    <para>The empty <code>p</code> element will be deleted by the QuickFix <code>delete</code>.</para>
+                </example>
+                <example>
+                    <title>Delete nodes by match Attribute</title>
+                    <programlisting>&lt;sch:rule context="title">
+    &lt;sch:report test="comment()" 
+        sqf:fix="deleteComment"> 
+        Comments are not allowed in the &lt;sch:name/> element.&lt;/sch:report>
+    &lt;sqf:fix id="deleteComment">
+        &lt;sqf:description>
+            &lt;sqf:title>Delete the comment.&lt;/sqf:title>
+        &lt;/sqf:description>
+        <emphasis role="bold">&lt;sqf:delete match="comment()"/></emphasis>
+    &lt;/sqf:fix>
+&lt;/sch:rule></programlisting>
+                    <para>All comments in the <code>title</code> element will be deleted by the QuickFix <code>deleteComment</code>.</para>
+                </example>
+            </sect3>
+            <sect3>
+                <title>Replace nodes by new content</title>
+                <para>The Activity Element <code>sqf:replace</code> replaces each anchor node by new content. There are three ways to create new content in SQF. In some cases they are also combinable.</para>
+                <sect4>
+                    <title>By SQF attributes</title>
+                    <para>The combination of the attributes <code>node-type</code> and <code>target</code> creates exactly one node. The <code>node-type</code> attribute specifies the kind of the node with the values <code>element</code>, <code>attribute</code>, <code>processing-instruction</code>, <code>pi</code>, <code>comment</code> or <code>keep</code>. The value <code>pi</code> is the short version of the <code>processing-instruction</code>. The value <code>keep</code> is provided, to create the same kind of node, such as the anchor node. </para>
+                    <para>If the value of the <code>node-type</code> attribute is not <code>comment</code>, the <code>target</code> attribute is needed to specify the name of the new node. The attribute value will be analyzed like an attribute value template as it is known in XSLT (<uri xlink:href="https://www.w3.org/TR/xslt20/#attribute-value-templates">https://www.w3.org/TR/xslt20/#attribute-value-templates</uri>) &#x2013; XPath expression, which are marked with curly brackets (<code>{XPath}</code>), will be evaluated to generate the node name. After evaluation, the value needs to be a valid xs:QName.</para>
+                    <para>To specify the value or content of the new node, this way is combinable with one of the other ways to create new content. If the attributes generate an element, the new content, generated by the second way, will be the new content of this element. Otherwise the new content will be transformed to a atomic value (attribute value, comment value, etc.) in the same way, as child nodes of <code>xsl:attribute</code> elements will be transformed to attribute values in XSLT.</para>
+                </sect4>
+                <sect4>
+                    <title>By XPath</title>
+                    <para>The <code>select</code> attribute of the Activity Element creates new content by XPath. The given XPath expression will be evaluated in the context of the anchor node. The return value will be used to generate new content. Returned nodes will be copied, atomic values will transformed to text nodes.</para>
+                    <para>If the <code>select</code> attribute is set, the Activity Element needs to be empty.</para>
+                    <example xml:id="example_create_content1">
+                        <title>Create nodes by the SQF attributes and copy nodes by XPath</title>
+                        <programlisting>&lt;sch:rule context="b">
+    &lt;sch:report test="ancestor::b" 
+        sqf:fix="italic"> 
+        Bold in bold is not allowed.&lt;/sch:report>
+    &lt;sqf:fix id="italic">
+        &lt;sqf:description>
+            &lt;sqf:title>Change it to italic.&lt;/sqf:title>
+        &lt;/sqf:description>
+        &lt;sqf:replace<emphasis role="bold"> target="i" node-type="element" select="node()"</emphasis>/>
+    &lt;/sqf:fix>
+&lt;/sch:rule></programlisting>
+                        <para>The recursive <code>b</code> element will be replaced by an <code>i</code> element. The content will be copied.</para>
+                    </example>
+                </sect4>
+                <sect4>
+                    <title>By the content</title>
+                    <para>If the <code>select</code> attribute is omitted, the content of the Activity Element will be used to create new content. The content will be evaluated as the content of a <code>xsl:template</code> element of XSLT 2.0. That also means that any Element, which are not in the XSLT namespace will be handled as Literal Result Elements. Exceptions are the SQF element <code>sqf:keep</code> and the Schematron elements <code>sch:let</code>, <code>sch:value-of</code> and <code>sch:name</code>. </para>
+                    <para>The Schematron elements will be handled, as it is known in Schematron. The <code>sqf:keep</code> Element will copy nodes, which are selected by the XPath expression in the <code>select</code> attribute.</para>
+                    <para>The initial context of this "template" will be the anchor node.</para>
+                    <example>
+                        <title>Create nodes by the content</title>
+                        <programlisting>&lt;sqf:fix id="italic">
+    &lt;sqf:description>
+        &lt;sqf:title>Change it to italic.&lt;/sqf:title>
+    &lt;/sqf:description>
+    <emphasis role="bold">&lt;sqf:replace>
+        &lt;i>
+            &lt;sqf:keep select="node()"/>
+        &lt;/i>
+    &lt;/sqf:replace></emphasis>
+&lt;/sqf:fix></programlisting>
+                        <para>This example QuickFix does the same actions, such as the QuickFix of <xref linkend="example_create_content1"/>, but uses a different way.</para>
+                    </example>
+                </sect4>
+            </sect3>
+            <sect3>
+                <title>Add the new content</title>
+                <para>To insert new content, without replacing existing nodes, the Activity Element <code>sqf:add</code> is used. It creates new content on the same way, as the <code>sqf:replace</code> element. But the new content will be inserted relative to each anchor node instead of replacing it. </para>
+                <para>To specify the exact position, the <code>sqf:add</code> element can have a <code>position</code> attribute, to specify, that the new content will be inserted after (value <code>after</code>), before (value <code>before</code>) the anchor node or as the first (value <code>first-child</code> &#x2013; default value) or last child (value <code>last-child</code>) of the anchor node. If the new content is an attribute, the <code>position</code> attribute should not be used, because it will always be added as an attribute of the anchor node.</para>
+                <example>
+                    <title>Add nodes</title>
+                    <programlisting>&lt;sch:rule context="h2">
+    &lt;sch:assert test="preceding::h1" 
+        sqf:fix="addH1"> 
+        A h2 should not be used without a h1 before.&lt;/sch:assert>
+    &lt;sqf:fix id="addH1">
+        &lt;sqf:description>
+            &lt;sqf:title>Add a h1 element before the h2 element.&lt;/sqf:title>
+        &lt;/sqf:description>
+        <emphasis role="bold">&lt;sqf:add node-type="element" target="h1" position="before"/></emphasis>
+    &lt;/sqf:fix>
+&lt;/sch:rule></programlisting>
+                    <para>Directly before the <code>h2</code>, a new <code>h1</code> will be inserted. Because there is no content defined for the new element, the <code>h1</code> will be empty.</para>
+                </example>
+            </sect3>
+            <sect3>
+                <title>Replace substrings</title>
+                <para>The Activity Element <code>sqf:stringReplace</code> is a special kind. It has a restriction to the anchor nodes, that they needs to be text nodes. These text nodes will be analyzed by a regular expression, given in the <code>regex</code> attribute. Each substring of the anchor text node, which matches to the regular expression, will be replaced by new content. The new content will be created, the same way as for the <code>sqf:replace</code> element, though the attributes <code>target</code> and <code>node-type</code> are not available for the <code>sqf:stringReplace</code> element.</para>
+                <example>
+                    <title>Replace substrings</title>
+                    <programlisting>&lt;sch:report test="matches(., '____')" 
+    sqf:fix="form"> 
+    More than three underscores in a row shouldn't be used.&lt;/sch:report>
+&lt;sqf:fix id="form">
+    &lt;sqf:description>
+        &lt;sqf:title>Replace the missused characters by a form element.&lt;/sqf:title>
+    &lt;/sqf:description>
+    <emphasis role="bold">&lt;sqf:stringReplace regex="___+">
+        &lt;form/>
+    &lt;/sqf:stringReplace></emphasis>
+&lt;/sqf:fix></programlisting>
+                </example>
+            </sect3>
+        </sect2>
+        <sect2>
+            <title>Additional features</title>
+            <sect3>
+                <title>User Entry</title>
+                <para>For some solutions of an error, it is imposible to define a QuickFix without more information of the user. For instance, the Schematron error is, that the <code>title</code> element is empty, but it shouldn't. For this case, the solution would be to define a new title. A predefined QuickFix for this issue is imposible because there is an unlimited number of possible titles. The additional input of the user is needed. </para>
+                <para>For this case, one or more User Entries can be defined for any QuickFix. The User Entry acts like a paramater, whose value will be set by the user during the execution of the QuickFix.</para>
+                <example>
+                    <title>User Entry</title>
+                    <programlisting>&lt;sch:rule context="title">
+    &lt;sch:assert test="normalize-space(.) != ''" 
+        sqf:fix="title"> 
+        A title shouldn't be empty.&lt;/sch:assert>
+    &lt;sqf:fix id="title">
+        &lt;sqf:description>
+            &lt;sqf:title>Set a title&lt;/sqf:title>
+            &lt;sqf:p>This QuickFix will set a title by using a 
+                User Entry.&lt;/sqf:p>
+        &lt;/sqf:description>
+        <emphasis role="bold">&lt;sqf:user-entry name="title">
+            &lt;sqf:description>
+                &lt;sqf:title>Please enter the new title.
+                &lt;/sqf:title>
+            &lt;/sqf:description>
+        &lt;/sqf:user-entry></emphasis>
+        &lt;sqf:replace target="title" node-type="element"
+            select="<emphasis role="bold">$title</emphasis>" />
+    &lt;/sqf:fix>
+&lt;/sch:rule></programlisting>
+                </example>
+                <para>The <code>sqf:user-entry</code> element has a <code>name</code> attribute and contains <code>sqf:description</code> element. The <code>name</code> attribute specifies the name of the User Entry. For the XPath expressions of all Activity Elements a variable will now be available with the name of the User Entry, which can be used to access to the value of the User Entry.</para>
+                <para>The <code>sqf:description</code> element will be used to define a title (<code>sqf:title</code>) and optional an additional description (<code>sqf:p</code> elements) to describe the use case of the User Entry to the user.</para>
+            </sect3>
+            <sect3>
+                <title>Use-when condition</title>
+                <para>In some cases the sense of a QuickFix is depending on the context of the error. For one error, the QuickFix makes sense, buf for another error of the same kind, it is useless, because it would create another error.</para>
+                <example>
+                    <title>Useless QuickFix </title>
+                    <para>Schematron schema:</para>
+                    <programlisting>&lt;sch:rule context="title">
+    &lt;sch:report test="exists(b)" 
+        sqf:fix="resolveBold deleteBold"> 
+        Bold element is not allowed in title.&lt;/sch:report>
+    &lt;sch:assert test="normalize-space(.) != ''"> 
+         A title shouldn't be empty.&lt;/sch:assert>
+    &lt;sqf:fix id="resolveBold">
+        &lt;!--...-->
+    &lt;/sqf:fix>
+    &lt;sqf:fix id="deleteBold">
+        &lt;sqf:description>
+            &lt;sqf:title>Delete the bold element&lt;/sqf:title>
+            &lt;sqf:p>Remove the bold (b) markup including the 
+                text content&lt;/sqf:p>
+        &lt;/sqf:description>
+        &lt;sqf:delete match="b"/>
+    &lt;/sqf:fix>
+&lt;/sch:rule></programlisting>
+                    <para>XML instance:</para>
+                    <programlisting>&lt;article>
+    &lt;section>
+        &lt;title>&lt;b>This title should be bold&lt;/b>&lt;/title>
+    &lt;/section>
+    &lt;section>
+        &lt;title>This title should be bold&lt;b/>&lt;/title>
+    &lt;/section>
+&lt;/article></programlisting>
+                    <para>Both titles will produce the same error, but for the first title, the QuickFix <code>deleteBold</code> is useless, because after the execution the <code>title</code> element would be empty and would produce another kind of error, caused by the <code>sch:assert</code> element.</para>
+                </example>
+                <para>To avoid such a subsequent error, the use-when condition helps. The XPath expression in the <code>use-when</code> attribute of the <code>sqf:fix</code> element is a condition to provide the QuickFix: </para>
+                <example>
+                    <title>Use-when condition</title>
+                    <programlisting>&lt;sqf:fix id="deleteBold"
+    <emphasis role="bold">use-when="node()[normalize-space(.) != ''] except b"</emphasis>>
+    &lt;sqf:description>
+        &lt;sqf:title>Delete the bold element&lt;/sqf:title>
+        &lt;sqf:p>Remove the bold (b) markup including the 
+            text content&lt;/sqf:p>
+    &lt;/sqf:description>
+    &lt;sqf:delete match="b"/>
+&lt;/sqf:fix></programlisting>
+                    <para>The QuickFix <code>deleteBold</code> will proposed to the user, only if the <code>title</code> element has a node, which is not a <code>b</code> element and contains other text than whitespace.</para>
+                </example>
+                <para>The <code>use-when</code> attribute is also available for each Activity Element, so the developer is able to specify use-when conditions for each single Activity Element.</para>
+            </sect3>
+        </sect2>
+        <?oxy_insert_end?>
     </sect1>
     <sect1>
         <title>Projects using SQF</title>
         <para>There are some projects available that use the SQF language to propose fixes:</para>
         <itemizedlist>
             <listitem>
-                <para>Dynamic Information Model (DIM) project (<link
-                        xlink:href="https://github.com/oxygenxml/dim"
-                        >https://github.com/oxygenxml/dim</link>) - uses SQF to propose quick fixes
-                    for the Schematron rules.</para>
+                <para>Dynamic Information Model (DIM) project (<link xlink:href="https://github.com/oxygenxml/dim">https://github.com/oxygenxml/dim</link>)<?oxy_delete author="Nico Kutscherauer" timestamp="20160120T124549+0100" content=" - "?><?oxy_insert_start author="Nico Kutscherauer" timestamp="20160120T124549+0100"?> &#x2013;
+                    <?oxy_insert_end?>uses SQF to propose quick fixes for the Schematron rules.</para>
             </listitem>
             <listitem>
-                <para>TEI (<link xlink:href="http://wiki.tei-c.org/index.php/Category:Schematron"
-                        >http://wiki.tei-c.org/index.php/Category:Schematron</link>) - a page that
-                    contains Schematron schemas and SQF that can be used to determine and fix
-                    various problems in TEI documents.</para>
+                <para>TEI (<link xlink:href="http://wiki.tei-c.org/index.php/Category:Schematron">http://wiki.tei-c.org/index.php/Category:Schematron</link>)<?oxy_delete author="Nico Kutscherauer" timestamp="20160120T124551+0100" content=" - "?><?oxy_insert_start author="Nico Kutscherauer" timestamp="20160120T124551+0100"?> &#x2013;
+                    <?oxy_insert_end?>a page that contains Schematron schemas and SQF that can be used to determine and fix various problems in TEI documents.</para>
             </listitem>
             <listitem>
-                <para>&lt;oXygen/> DITA framework - a built-in framework in oXygen XML Editor for
-                    DITA documents and it also contains a set of Schematron schemas and SQF fixes
-                    that can be used to impose rules and propose fixes to solve errors.</para>
+                <para>&lt;oXygen/> DITA framework<?oxy_delete author="Nico Kutscherauer" timestamp="20160120T124552+0100" content=" - "?><?oxy_insert_start author="Nico Kutscherauer" timestamp="20160120T124553+0100"?> &#x2013;
+                    <?oxy_insert_end?>a built-in framework in oXygen XML Editor for DITA documents and it also contains a set of Schematron schemas and SQF fixes that can be used to impose rules and propose fixes to solve errors.</para>
             </listitem>
             <listitem>
-                <para>&lt;oXygen/> User Manual (<link
-                        xlink:href="https://github.com/oxygenxml/userguide"
-                        >https://github.com/oxygenxml/userguide</link>) - a public version of the
-                    oXygen XML Editor user guide that provides an example where SQF rules have been
-                    implemented on a DITA project.</para>
+                <para>&lt;oXygen/> User Manual (<link xlink:href="https://github.com/oxygenxml/userguide">https://github.com/oxygenxml/userguide</link>)<?oxy_delete author="Nico Kutscherauer" timestamp="20160120T124554+0100" content=" - "?><?oxy_insert_start author="Nico Kutscherauer" timestamp="20160120T124554+0100"?> &#x2013;
+                    <?oxy_insert_end?>a public version of the oXygen XML Editor user guide that provides an example where SQF rules have been implemented on a DITA project.</para>
             </listitem>
         </itemizedlist>
     </sect1>
@@ -326,3 +656,6 @@
             dynamically.</para>
     </sect1>
 </article>
+
+
+<?oxy_options track_changes="on"?>
