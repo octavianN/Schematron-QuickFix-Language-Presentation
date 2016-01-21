@@ -180,10 +180,8 @@
             <para>When an XML document is validated against a Schematron schema, we obtain our own
                 customized errors. The errors are defined in the Schematron schema using the
                     <code>sch:assert</code> and <code>sch:report</code> elements. In this case, it
-                is difficult, and
-                <?oxy_delete author="Nico Kutscherauer" timestamp="20160118T115457+0100" content="sometimes"?><?oxy_insert_start author="Nico Kutscherauer" timestamp="20160118T115457+0100"?>in
-                many cases<?oxy_insert_end?> impossible, to generate a fix based on the error
-                message and location. </para>
+                is difficult, and almost impossible, to generate a fix based on the error message
+                and location. </para>
             <para>Therefore, a solution to propose fixes for this type of errors is to define the
                 fixes directly in the schema. A Schematron developer can create fixes and associate
                 them with the <emphasis>assert</emphasis> or <emphasis>report</emphasis> message.<mediaobject>
