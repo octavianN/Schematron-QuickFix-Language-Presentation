@@ -259,12 +259,11 @@
         </sect2>
         <sect2>
             <title>SQF Implementations</title>
-            <para>A<?oxy_delete author="Nico Kutscherauer" timestamp="20160118T120617+0100" content="n"?>
-                SQF fix consists of a set of operations that must be performed in an XML document.
-                These are basic operations (add, delete, replace, and string replace) that needs to
-                make precise changes in the document. This means that when a quick fix is applied,
-                only the affected part of the XML document should be changed and the DOCTYPE
-                declaration, entities, etc. must be preserved.</para>
+            <para>An SQF fix consists of a set of operations that must be performed in an XML
+                document. These are basic operations (add, delete, replace, and string replace) that
+                needs to make precise changes in the document. This means that when a quick fix is
+                applied, only the affected part of the XML document should be changed and the
+                DOCTYPE declaration, entities, etc. must be preserved.</para>
             <para>There are two types of implementations that can be used to execute Schematron
                 Quick Fixes:<itemizedlist>
                     <listitem>
@@ -283,41 +282,39 @@
     </sect1>
     <sect1>
         <title>Schematron QuickFix Language</title>
-        <para>As in the example above (see <xref linkend="simple_example"/>) already shown, the
-            QuickFix, defined by the <code>sqf:fix</code> element, is structured as follows: </para>
+        <para>As in the example above (see <xref linkend="simple_example"/>), the QuickFix (defined
+            by the <code>sqf:fix</code> element) is structured as follows: </para>
         <itemizedlist>
             <listitem>
-                <para><emphasis>ID</emphasis></para>
-                <para>The ID is to reference the QuickFix by <code>sch:assert</code> or
-                        <code>sch:report</code> elements.</para>
+                <para><emphasis>ID</emphasis> –  Used to reference the QuickFix by
+                        <code>sch:assert</code> or <code>sch:report</code> elements.</para>
             </listitem>
             <listitem>
-                <para><emphasis>Title and description</emphasis></para>
-                <para>The title is to describe the user, the operation of the QuickFix, by a short
-                    label. The optional description can be used as additional information for the
-                    user.</para>
+                <para><emphasis>Title and description</emphasis> – The <emphasis>title</emphasis> is
+                    used to describe the operation of the QuickFix with a short label. The optional
+                        <emphasis>description</emphasis> can be used as additional information for
+                    the user.</para>
             </listitem>
             <listitem>
-                <para><emphasis>Operation</emphasis></para>
-                <para>The operation or Activity Elements specifies the actions of the
-                    QuickFix.</para>
+                <para><emphasis>Operation</emphasis> – The <emphasis>Activity Elements</emphasis>
+                    that specify the actions of the QuickFix.</para>
             </listitem>
             <listitem>
-                <para><emphasis>Additional features</emphasis></para>
-                <para>There are also some additional features, which had no place in the simple
-                    example, like User Entries and use-when conditions.</para>
+                <para><emphasis>Additional features</emphasis> – There are also some additional
+                    features that had no place in our simple example (such as <emphasis>User
+                        Entries</emphasis> and <code>use-when</code> conditions).</para>
             </listitem>
         </itemizedlist>
         <sect2>
             <title>Reference a QuickFix</title>
-            <para>To reference a QuickFix the <code>sch:assert</code> or <code>sch:report</code>
-                element needs a <code>sqf:fix</code> attribute with the ID of the QuickFix. As there
-                is in many cases multiple possible solutions for one error, the <code>sqf:fix</code>
-                attribute is able to reference to more than one QuickFixes. In this cases the
-                    <code>sqf:fix</code> attribute should have a whitespace separated list of those
-                QuickFix IDs who should be referenced:</para>
+            <para>To reference a QuickFix, the <code>sch:assert</code> or <code>sch:report</code>
+                element needs a <code>sqf:fix</code> attribute with the ID of the QuickFix. In many
+                cases there are multiple possible solutions for one error, and the
+                    <code>sqf:fix</code> attribute is able to reference to more than one QuickFix.
+                In this case, the <code>sqf:fix</code> attribute should have a list of those
+                QuickFix IDs (separated with whitespaces) that should be referenced:</para>
             <example>
-                <title>Reference to multiple QuickFixes</title>
+                <title>Reference to Multiple QuickFixes</title>
                 <programlisting>&lt;sch:rule context="title">
     &lt;sch:report test="exists(b)" 
                 sqf:fix="<emphasis role="bold">resolveBold deleteBold</emphasis>"> 
@@ -345,12 +342,13 @@ Bold element is not allowed in title.&lt;/sch:report>
                 <title>Scope</title>
                 <para>The referenced QuickFix needs to be in the scope of the
                         <code>sch:report</code> or <code>sch:assert</code> element. It is in the
-                    scope, if the <code>sqf:fix</code> element is a child of the same
-                        <code>sch:rule</code> element, which contains the <code>sch:report</code>
-                    element or if the QuickFix was defined global. To define a QuickFix global, the
-                    top level element <code>sqf:fixes</code> is able to contain <code>sqf:fix</code>
-                    elements. QuickFixes, which are specified in this way, are available for all
-                        <code>sch:report</code> or <code>sch:assert</code> elements of the schema. </para>
+                    scope if the <code>sqf:fix</code> element is a child of the same
+                        <code>sch:rule</code> element (which contains the <code>sch:report</code> or
+                        <code>sch:assert</code> element) or if the QuickFix was defined globally. To
+                    define a QuickFix globally, the top-level element <code>sqf:fixes</code> should
+                    contain one or more <code>sqf:fix</code> elements. QuickFixes that are specified
+                    in this way are available for all <code>sch:report</code> or
+                        <code>sch:assert</code> elements of the schema. </para>
                 <example>
                     <title>Global QuickFixes</title>
                     <programlisting>&lt;sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" 
@@ -386,12 +384,12 @@ queryBinding="xslt2">
                 </example>
             </sect3>
             <sect3>
-                <title>QuickFix groups</title>
-                <para>To avoid long lists of IDs, it is possible to reference to a QuickFix group. A
-                    QuickFix group is a set of QuickFixes. A reference to a QuickFix group is equal
-                    to reference to each QuickFix of this group. </para>
+                <title>QuickFix Groups</title>
+                <para>To avoid long lists of IDs, it is possible to reference a <emphasis>QuickFix
+                        group</emphasis>. A QuickFix group is a set of QuickFixes and a reference to
+                    a QuickFix group is equal to a reference to each QuickFix in this group. </para>
                 <example>
-                    <title>Reference to a QuickFix group</title>
+                    <title>Reference to a QuickFix Group</title>
                     <programlisting>&lt;sch:report test="exists(b)" 
     <emphasis role="bold">sqf:fix="bold"</emphasis>> 
     Bold element is not allowed in title.&lt;/sch:report><emphasis role="bold">
@@ -414,30 +412,27 @@ queryBinding="xslt2">
         &lt;sqf:delete match="b"/>
     &lt;/sqf:fix><emphasis role="bold">
 &lt;/sqf:group></emphasis></programlisting>
-                    <para>To reference to a QuickFix group, the <code>sqf:group</code> element has
-                        also an <code>id</code> attribute. There is no difference for the
-                            <code>sch:assert</code> or <code>sch:report</code> elements between
-                        referencing to a QuickFix and referencing to a QuickFix group.</para>
+                    <para>To reference a QuickFix group, the <code>sqf:group</code> element also has
+                        an <code>id</code> attribute. For the <code>sch:assert</code> or
+                            <code>sch:report</code> elements, there is no difference between
+                        referencing a QuickFix or QuickFix group.</para>
                 </example>
-                <para>A QuickFix group can also be defined global (in a <code>sqf:fixes</code>
-                    element) or local (in a <code>sch:rule</code> element).</para>
+                <para>A QuickFix group can also be defined globally (in an <code>sqf:fixes</code>
+                    element) or locally (in an <code>sch:rule</code> element).</para>
             </sect3>
         </sect2>
         <sect2>
-            <title>Title and description</title>
-            <para>The title (<code>sqf:title</code> element) is very important of a QuickFix. It is
-                the challenge of the developer to create short titles which provides the user enough
-                information to understand what will happen, when the QuickFix is executed. As an
-                additional tool, the developer is able to deliver more information by
+            <title>Title and Description</title>
+            <para>The title (<code>sqf:title</code> element) is very important for a QuickFix. It is
+                a challenge for the developer to create short titles that provide the user with
+                enough information to understand what will happen when the QuickFix is executed. As
+                an additional tool, the developer can deliver more information by using
                     <code>sqf:p</code> elements.</para>
-            <para>Also, like the Schematron error message, the title and the additional description
-                are customizable, by using the Schematron elements <code>sch:value-of</code> or
+            <para>Also, as with Schematron error messages, the title and optional description can be
+                customized by using the Schematron elements <code>sch:value-of</code> or
                     <code>sch:name</code>.</para>
             <example>
-                <title>Customized title and description</title>
-                <para>This QuickFix deletes the context node of the error (matched by the
-                        <code>sch:rule</code> element). This is a common solution and specified in
-                    this way it can be reused for different contexts:</para>
+                <title>Customized Title and Description</title>
                 <programlisting>&lt;sqf:fix id="delete">
     &lt;sqf:description>
         &lt;sqf:title>Delete the <emphasis role="bold">&lt;sch:name/></emphasis> element&lt;/sqf:title>
@@ -453,12 +448,15 @@ queryBinding="xslt2">
     &lt;sqf:delete/>
 &lt;/sqf:fix></programlisting>
             </example>
+            <para>This QuickFix deletes the context node of the error (matched by the
+                    <code>sch:rule</code> element). This is a common solution, and if specified in
+                this way, it can be reused in various contexts.</para>
         </sect2>
         <sect2>
             <title>Activity Elements</title>
-            <para>After the description, the developer should now specify what the QuickFix should
-                actually do. To define actions, the developer is able to choose between four kinds
-                of Activity Elements. </para>
+            <para>After the description, the developer should specify what the QuickFix should
+                actually do. To define actions, the developer can choose between four types of
+                    <emphasis>Activity Elements</emphasis>. </para>
             <para>The developer can also add any number of Activity Elements from the same or
                 different kinds to one QuickFix. Each Activity Element will be executed separately,
                 in the context of the node, which was the context of the error (matched by the
@@ -824,4 +822,3 @@ queryBinding="xslt2">
     </sect1>
 </article>
 
-<?oxy_options track_changes="on"?>
