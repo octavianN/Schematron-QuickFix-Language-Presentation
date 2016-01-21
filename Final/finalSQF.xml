@@ -172,9 +172,7 @@
                         <imagedata fileref="xslErr.png"/>
                     </imageobject>
                 </inlinemediaobject></para>
-            <?oxy_custom_start type="oxy_content_highlight" color="180,215,3"?>
         </sect2>
-        <?oxy_custom_end?>
         <sect2>
             <title>Fixing Custom Errors</title>
             <para>When an XML document is validated against a Schematron schema, we obtain our own
