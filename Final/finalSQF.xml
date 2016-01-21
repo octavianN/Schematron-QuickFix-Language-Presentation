@@ -457,17 +457,16 @@ queryBinding="xslt2">
             <para>After the description, the developer should specify what the QuickFix should
                 actually do. To define actions, the developer can choose between four types of
                     <emphasis>Activity Elements</emphasis>. </para>
-            <para>The developer can also add any number of Activity Elements from the same or
-                different kinds to one QuickFix. Each Activity Element will be executed separately,
-                in the context of the node, which was the context of the error (matched by the
-                    <code>sch:rule</code> element).</para>
+            <para>The developer can also add any number of Activity Elements to one QuickFix. Each
+                Activity Element will be executed separately, in the context of the node where the
+                error occurred (matched by the <code>sch:rule</code> element).</para>
             <para>All Activity Elements have a <code>match</code> attribute to select nodes by
-                XPath, relative to the context node of the error. These nodes are called anchor
-                nodes. The kind of processing of the anchor nodes depends on the kind, additional
-                attributes and the content of the Activity element. An Activity Element which has no
-                    <code>match</code> attribute, selects the context of the error as its anchor
-                node.</para>
-            <para>This are the four Activity Elements:</para>
+                XPath, relative to the context node of the error. These nodes are called
+                    <emphasis>anchor</emphasis> nodes. The kind of processing of the anchor nodes
+                depends on the type, additional attributes, and the content of the Activity Element.
+                An Activity Element that has no <code>match</code> attribute selects the context of
+                the error as its anchor node.</para>
+            <para>There are four types of Activity Elements:</para>
             <itemizedlist>
                 <listitem>
                     <para><code>sqf:delete</code></para>
@@ -485,11 +484,11 @@ queryBinding="xslt2">
                 </listitem>
             </itemizedlist>
             <sect3>
-                <title>Delete nodes</title>
-                <para>The delete action is the simplest kind of the Activity elements. The
+                <title>Delete Nodes</title>
+                <para>The delete action is the simplest type of Activity Element. The
                         <code>sqf:delete</code> element deletes the anchor nodes.</para>
                 <example>
-                    <title>Delete the error context</title>
+                    <title>Delete the Error Context</title>
                     <programlisting>&lt;sch:rule context="p">
     &lt;sch:report test="normalize-space(.) = ''" 
         sqf:fix="delete"> 
@@ -505,7 +504,7 @@ queryBinding="xslt2">
                             <code>delete</code>.</para>
                 </example>
                 <example>
-                    <title>Delete nodes by match Attribute</title>
+                    <title>Delete Nodes by Match Attribute</title>
                     <programlisting>&lt;sch:rule context="title">
     &lt;sch:report test="comment()" 
         sqf:fix="deleteComment"> 
@@ -522,49 +521,50 @@ queryBinding="xslt2">
                 </example>
             </sect3>
             <sect3>
-                <title>Replace nodes by new content</title>
-                <para>The Activity Element <code>sqf:replace</code> replaces each anchor node by new
-                    content. There are three ways to create new content in SQF. In some cases they
-                    are also combinable.</para>
+                <title>Replace Nodes with New Content</title>
+                <para>The Activity Element <code>sqf:replace</code> replaces each anchor node with
+                    new content. There are three ways to create new content in SQF. In some cases,
+                    they can also be combined.</para>
                 <sect4>
-                    <title>By SQF attributes</title>
+                    <title>Replace by using SQF Attributes</title>
                     <para>The combination of the attributes <code>node-type</code> and
                             <code>target</code> creates exactly one node. The <code>node-type</code>
-                        attribute specifies the kind of the node with the values
+                        attribute specifies the type of the node with the values:
                             <code>element</code>, <code>attribute</code>,
                             <code>processing-instruction</code>, <code>pi</code>,
-                            <code>comment</code> or <code>keep</code>. The value <code>pi</code> is
-                        the short version of the <code>processing-instruction</code>. The value
-                            <code>keep</code> is provided, to create the same kind of node, such as
+                            <code>comment</code>, or <code>keep</code>. The value <code>pi</code> is
+                        the short version of <code>processing-instruction</code>. The value
+                            <code>keep</code> is provided to create the same type of node, such as
                         the anchor node. </para>
                     <para>If the value of the <code>node-type</code> attribute is not
                             <code>comment</code>, the <code>target</code> attribute is needed to
                         specify the name of the new node. The attribute value will be analyzed like
-                        an attribute value template as it is known in XSLT (<uri
+                        an attribute value template (as defined in XSLT: <uri
                             xlink:href="https://www.w3.org/TR/xslt20/#attribute-value-templates"
-                            >https://www.w3.org/TR/xslt20/#attribute-value-templates</uri>) –
+                            >https://www.w3.org/TR/xslt20/#attribute-value-templates</uri>). An
                         XPath expression, which is marked with curly brackets
                         (<code>{XPath}</code>), will be evaluated to generate the node name. After
-                        evaluation, the value needs to be a valid xs:QName.</para>
-                    <para>To specify the value or content of the new node, this way is combinable
-                        with one of the other ways to create new content. If the attributes generate
-                        an element, the new content, generated by the second way, will be the new
+                        evaluation, the value needs to be a valid <code>xs:QName</code>.</para>
+                    <para><?oxy_comment_start author="Octavian" timestamp="20160121T151528+0200" comment="You can combine this method of specifying the value or content of the new node with one of the other ways of creating new content. If the attributes generate an element, the new content, generated by the second way, will be the new content of this element. Otherwise, the new content is transformed to an atomic value (attribute value, comment value, etc.) in the same way as child nodes of xsl:attribute elements are transformed to attribute values in XSLT."?>To
+                        specify the value or content of the new node, this way is combinable with
+                        one of the other ways to create new content. If the attributes generate an
+                        element, the new content, generated by the second way, will be the new
                         content of this element. Otherwise the new content will be transformed to an
                         atomic value (attribute value, comment value, etc.) in the same way, as
-                        child nodes of <code>xsl:attribute</code> elements will be transformed to
-                        attribute values in XSLT.</para>
+                        child nodes of xsl:attribute elements will be transformed to attribute
+                        values in XSLT.<?oxy_comment_end?></para>
                 </sect4>
                 <sect4>
-                    <title>By XPath</title>
+                    <title>Replace by using XPath</title>
                     <para>The <code>select</code> attribute of the Activity Element creates new
-                        content by XPath. The given XPath expression will be evaluated in the
+                        content by using XPath. The given XPath expression will be evaluated in the
                         context of the anchor node. The return value will be used to generate new
-                        content. Returned nodes will be copied, atomic values will transformed to
-                        text nodes.</para>
+                        content. Returned nodes will be copied and atomic values will be transformed
+                        to text nodes.</para>
                     <para>If the <code>select</code> attribute is set, the Activity Element needs to
                         be empty.</para>
                     <example xml:id="example_create_content1">
-                        <title>Create nodes by the SQF attributes and copy nodes by XPath</title>
+                        <title>Create Nodes by the SQF Attributes and Copy Nodes by XPath</title>
                         <programlisting>&lt;sch:rule context="b">
     &lt;sch:report test="ancestor::b" 
         sqf:fix="italic"> 
@@ -581,20 +581,21 @@ queryBinding="xslt2">
                     </example>
                 </sect4>
                 <sect4>
-                    <title>By the content</title>
+                    <title>Replace by using the Content</title>
                     <para>If the <code>select</code> attribute is omitted, the content of the
                         Activity Element will be used to create new content. The content will be
-                        evaluated as the content of a <code>xsl:template</code> element of XSLT 2.0.
-                        That also means that any Element, which are not in the XSLT namespace will
-                        be handled as Literal Result Elements. Exceptions are the SQF element
-                            <code>sqf:keep</code> and the Schematron elements <code>sch:let</code>,
-                            <code>sch:value-of</code> and <code>sch:name</code>. </para>
-                    <para>The Schematron elements will be handled, as it is known in Schematron. The
-                            <code>sqf:keep</code> Element will copy nodes, which are selected by the
+                        evaluated the same as the content of an <code>xsl:template</code> element in
+                        XSLT 2.0. That also means that any elements that are not in the XSLT
+                        namespace will be handled as Literal Result Elements. Exceptions are the SQF
+                        element <code>sqf:keep</code> and the Schematron elements
+                            <code>sch:let</code>, <code>sch:value-of</code>, and
+                            <code>sch:name</code>. </para>
+                    <para>The Schematron elements will be handled as they are in Schematron. The
+                            <code>sqf:keep</code> element will copy nodes that are selected by the
                         XPath expression in the <code>select</code> attribute.</para>
                     <para>The initial context of this "template" will be the anchor node.</para>
                     <example>
-                        <title>Create nodes by the content</title>
+                        <title>Create Nodes by the Content</title>
                         <programlisting>&lt;sqf:fix id="italic">
     &lt;sqf:description>
         &lt;sqf:title>Change it to italic.&lt;/sqf:title>
@@ -605,27 +606,27 @@ queryBinding="xslt2">
         &lt;/i>
     &lt;/sqf:replace></emphasis>
 &lt;/sqf:fix></programlisting>
-                        <para>This example QuickFix does the same actions, such as the QuickFix of
-                                <xref linkend="example_create_content1"/>, but uses a different
-                            way.</para>
+                        <para>This QuickFix example performs the same actions as the previous
+                            example (<xref linkend="example_create_content1"/>), but uses a
+                            different way.</para>
                     </example>
                 </sect4>
             </sect3>
             <sect3>
-                <title>Add the new content</title>
-                <para>To insert new content, without replacing existing nodes, the Activity Element
-                        <code>sqf:add</code> is used. It creates new content on the same way, as the
-                        <code>sqf:replace</code> element. But the new content will be inserted
+                <title>Add the New Content</title>
+                <para>To insert new content without replacing existing nodes, the Activity Element
+                        <code>sqf:add</code> is used. It creates new content in the same way as the
+                        <code>sqf:replace</code> element, but the new content will be inserted
                     relative to each anchor node instead of replacing it. </para>
                 <para>To specify the exact position, the <code>sqf:add</code> element can have a
-                        <code>position</code> attribute, to specify, that the new content will be
+                        <code>position</code> attribute to specify that the new content will be
                     inserted after (value <code>after</code>), before (value <code>before</code>)
-                    the anchor node or as the first (value <code>first-child</code> – default
+                    the anchor node, or as the first (value <code>first-child</code> – default
                     value) or last child (value <code>last-child</code>) of the anchor node. If the
                     new content is an attribute, the <code>position</code> attribute should not be
-                    used, because it will always be added as an attribute of the anchor node.</para>
+                    used because it will always be added as an attribute of the anchor node.</para>
                 <example>
-                    <title>Add nodes</title>
+                    <title>Add Nodes</title>
                     <programlisting>&lt;sch:rule context="h2">
     &lt;sch:assert test="preceding::h1" 
         sqf:fix="addH1"> 
@@ -643,17 +644,17 @@ queryBinding="xslt2">
                 </example>
             </sect3>
             <sect3>
-                <title>Replace substrings</title>
-                <para>The Activity Element <code>sqf:stringReplace</code> is a special kind. It has
-                    a restriction to the anchor nodes, that they need to be text nodes. These text
-                    nodes will be analyzed by a regular expression, given in the <code>regex</code>
-                    attribute. Each substring of the anchor text node, which matches to the regular
-                    expression, will be replaced by new content. The new content will be created,
-                    the same way as for the <code>sqf:replace</code> element, though the attributes
+                <title>Replace Substrings</title>
+                <para>The Activity Element <code>sqf:stringReplace</code> is a special type. It has
+                    a restriction to the anchor nodes in that they need to be text nodes. These text
+                    nodes will be analyzed by a regular expression given in the <code>regex</code>
+                    attribute. Each substring of the anchor text node that matches to the regular
+                    expression will be replaced by new content. The new content will be created in
+                    the same way as the <code>sqf:replace</code> element, although the attributes
                         <code>target</code> and <code>node-type</code> are not available for the
                         <code>sqf:stringReplace</code> element.</para>
                 <example>
-                    <title>Replace substrings</title>
+                    <title>Replace Substrings</title>
                     <programlisting>&lt;sch:report test="matches(., '____')" 
     sqf:fix="form"> 
     More than three underscores in a row shouldn't be used.&lt;/sch:report>
@@ -669,18 +670,18 @@ queryBinding="xslt2">
             </sect3>
         </sect2>
         <sect2>
-            <title>Additional features</title>
+            <title>Additional Features</title>
             <sect3>
                 <title>User Entry</title>
                 <para>For some solutions of an error, it is impossible to define a QuickFix without
-                    more information of the user. For instance, the Schematron error is, that the
-                        <code>title</code> element is empty, but it shouldn't. For this case, the
-                    solution would be to define a new title. A predefined QuickFix for this issue is
-                    impossible because there is an unlimited number of possible titles. The
-                    additional input of the user is needed. </para>
-                <para>For this case, one or more User Entries can be defined for any QuickFix. The
-                    User Entry acts like a parameter, whose value will be set by the user during the
-                    execution of the QuickFix.</para>
+                    getting more information from the user. For instance, if the Schematron error is
+                    that the <code>title</code> element is empty (and it should not be). For this
+                    case, the solution would be to define a new title. A predefined QuickFix for
+                    this issue is impossible because there is an unlimited number of possible
+                    titles. Therefore, additional input from the user is needed. </para>
+                <para>For this case, one or more <emphasis>User Entries</emphasis> can be defined
+                    for any QuickFix. The User Entry acts like a parameter whose value will be set
+                    by the user during the execution of the QuickFix.</para>
                 <example>
                     <title>User Entry</title>
                     <programlisting>&lt;sch:rule context="title">
@@ -705,20 +706,21 @@ queryBinding="xslt2">
 &lt;/sch:rule></programlisting>
                 </example>
                 <para>The <code>sqf:user-entry</code> element has a <code>name</code> attribute and
-                    contains <code>sqf:description</code> element. The <code>name</code> attribute
-                    specifies the name of the User Entry. For the XPath expressions of all Activity
-                    Elements a variable will now be available with the name of the User Entry, which
-                    can be used to access to the value of the User Entry.</para>
+                    contains an <code>sqf:description</code> element. The <code>name</code>
+                    attribute specifies the name of the User Entry. For XPath expressions of all
+                    Activity Elements, a variable will now be available with the name of the User
+                    Entry, and the variable can be used to access to the value of the User
+                    Entry.</para>
                 <para>The <code>sqf:description</code> element will be used to define a title
-                        (<code>sqf:title</code>) and optional an additional description
-                        (<code>sqf:p</code> elements) to describe the use case of the User Entry to
-                    the user.</para>
+                        (<code>sqf:title</code>) and optionally an additional description
+                        (<code>sqf:p</code> elements) to describe the particular use-case of the
+                    User Entry element.</para>
             </sect3>
             <sect3>
-                <title>Use-when condition</title>
-                <para>In some cases the sense of a QuickFix is depending on the context of the
-                    error. For one error, the QuickFix makes sense, but for another error of the
-                    same kind, it is useless, because it would create another error.</para>
+                <title>Use-when Condition</title>
+                <para>In some cases, the usefulness of a QuickFix depends on the context of the
+                    error. For one error, the QuickFix might make sense, but for another error of
+                    the same kind, it might be useless because it would create another error.</para>
                 <example>
                     <title>Useless QuickFix </title>
                     <para>Schematron schema:</para>
@@ -750,15 +752,15 @@ queryBinding="xslt2">
     &lt;/section>
 &lt;/article></programlisting>
                     <para>Both titles will produce the same error, but for the first title, the
-                        QuickFix <code>deleteBold</code> is useless, because after the execution the
+                        QuickFix <code>deleteBold</code> is useless because after the execution the
                             <code>title</code> element would be empty and would produce another kind
-                        of error, caused by the <code>sch:assert</code> element.</para>
+                        of error (caused by the <code>sch:assert</code> element).</para>
                 </example>
                 <para>To avoid such a subsequent error, the use-when condition helps. The XPath
                     expression in the <code>use-when</code> attribute of the <code>sqf:fix</code>
                     element is a condition to provide the QuickFix: </para>
                 <example>
-                    <title>Use-when condition</title>
+                    <title>Use-when Condition</title>
                     <programlisting>&lt;sqf:fix id="deleteBold"
     <emphasis role="bold">use-when="node()[normalize-space(.) != ''] except b"</emphasis>>
     &lt;sqf:description>
@@ -768,9 +770,9 @@ queryBinding="xslt2">
     &lt;/sqf:description>
     &lt;sqf:delete match="b"/>
 &lt;/sqf:fix></programlisting>
-                    <para>The QuickFix <code>deleteBold</code> will be proposed to the user, only if
-                        the <code>title</code> element has a node, which is not a <code>b</code>
-                        element and contains other text than whitespace.</para>
+                    <para>The QuickFix <code>deleteBold</code> will be proposed to the user only if
+                        the <code>title</code> element has a node, it is not a <code>b</code>
+                        element, and it contains text other than whitespaces.</para>
                 </example>
                 <para>The <code>use-when</code> attribute is also available for each Activity
                     Element, so the developer is able to specify use-when conditions for each single
