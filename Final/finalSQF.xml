@@ -125,10 +125,11 @@
     <sect1>
         <title>Fixing Validation Errors</title>
         <para>Over the course of time various IDEs (such as Eclipse or IntelliJ IDEA) have
-            implemented fixes for XML validation errors. In these cases, the implementation was made
-            directly in the engine. However, it would be better to have an implementation that does
-            not depend on the validation engine. A way to solve this is by analyzing the validation
-            message, error code, and the error location that the engine provides.</para>
+            implemented fixes for XML validation errors and helped the user to solve the errors by
+            offering fix proposals. The fix proposals can be implemented directly in the validation
+            engine, or it would be better to have an implementation that does not depend on the
+            validation engine. A way to solve this is by analyzing the validation message, error
+            code, and the error location that the engine provides.</para>
         <para>We can say that the validation errors can be split into two categories:</para>
         <para>
             <itemizedlist>
@@ -235,7 +236,7 @@
                         <para>Ensure that the table layout is correct.</para>
                     </listitem>
                     <listitem>
-                        <para> Text needs to be normalized (NFC).</para>
+                        <para>Text needs to be normalized (NFC).</para>
                     </listitem>
                 </itemizedlist></para>
             <para>For XSLT, XSD, or RNG documents, you can define coding styles, such as: </para>
