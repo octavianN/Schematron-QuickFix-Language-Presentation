@@ -105,19 +105,31 @@
                 </imageobject>
             </mediaobject>
         </figure>
-        <para>When an XML document is validated against an XSD, RNG or DTD schema, the error
-            messages refer more to the XML syntax of the document and are not easily understood by
-            the user. To fix this type of errors, the user must understand the validation messages,
-            check the location of the problems, and determine what operations must be done.</para>
+        <para>When an XML document is validated against
+            <?oxy_delete author="George Bina" timestamp="20160125T122123+0200" content="an "?><?oxy_insert_start author="George Bina" timestamp="20160125T122125+0200"?>DTD,
+            <?oxy_insert_end?>XSD<?oxy_delete author="George Bina" timestamp="20160125T122131+0200" content=","?><?oxy_insert_start author="George Bina" timestamp="20160125T122131+0200"?>
+            or<?oxy_insert_end?> RNG
+            <?oxy_delete author="George Bina" timestamp="20160125T122135+0200" content="or DTD "?>schema,
+            the error messages refer more to the XML syntax of the document and are not easily
+            understood by the user. To fix this type of errors, the user must understand the
+            validation messages, check the location of the problems, and determine what operations
+            must be done.</para>
         <para>For the validation of an XML document against a Schematron schema, the errors are in
-            fact constraints or business rules and are meant to be more easily understood by the
-            user. The Schematron developers can better explain what operations should be done in
-            order to fix a problem because they can use custom messages. Also, the location of the
-            problem can be specified better in the Schematron schema.</para>
+            fact<?oxy_insert_start author="George Bina" timestamp="20160125T122430+0200"?>
+            failed<?oxy_insert_end?> constraints or business rules and are meant to be
+            <?oxy_delete author="George Bina" timestamp="20160125T122509+0200" content="more "?>easily
+            underst<?oxy_insert_start author="George Bina" timestamp="20160125T122448+0200"?>andable
+            <?oxy_insert_end?><?oxy_delete author="George Bina" timestamp="20160125T122445+0200" content="ood "?>by
+            the user. The Schematron developers can better explain what operations should be done in
+            order to fix a problem because they <?oxy_delete author="George Bina" timestamp="20160125T122545+0200" content="can use custom"?>
+            <?oxy_insert_start author="George Bina" timestamp="20160125T122549+0200"?>control the
+            error <?oxy_insert_end?>messages. Also, the location of the problem can be specified
+            better in the Schematron schema.</para>
         <para>However, in both cases, to fix the error the user must do the operations manually and
             this can result in generating even more errors. The automation of the error-fixing
-            process will help the user to solve the problem faster and with fewer or no
-            errors.</para>
+            process will help the user to solve the problem faster and
+            with<?oxy_delete author="George Bina" timestamp="20160125T123033+0200" content=" fewer or"?>
+            no errors.</para>
         <para>A good example of error fixing is a spell checker. A spell checker presents errors but
             also offers a set of solutions to fix them. Similarly, solutions can be generated for
             XML validation errors.</para>
@@ -135,7 +147,13 @@
             <itemizedlist>
                 <listitem>
                     <para>Predefined – Defined in the validation engine. This is the case when an
-                        XML document is validated against an XSD, RNG, or DTD schema.</para>
+                        XML document is validated against
+                        a<?oxy_delete author="George Bina" timestamp="20160125T123139+0200" content="n"?><?oxy_insert_start author="George Bina" timestamp="20160125T123143+0200"?>
+                        DTD, <?oxy_insert_end?>
+                        XSD<?oxy_delete author="George Bina" timestamp="20160125T123154+0200" content=","?><?oxy_insert_start author="George Bina" timestamp="20160125T123154+0200"?>
+                        or<?oxy_insert_end?>
+                        RNG<?oxy_delete author="George Bina" timestamp="20160125T123201+0200" content=", or DTD"?>
+                        schema.</para>
                 </listitem>
                 <listitem>
                     <para>Custom – Defined by the user. This is the case when an XML document is
@@ -152,9 +170,10 @@
                 validation engine.</para>
             <para>However, by providing fix proposals for these types of errors, the user will be
                 helped with not only solving the problem, but also understanding it. The messages
-                from the validation processor are often difficult to understand for basic users. For
-                example, when an ID definition is missing, you might get the following error
-                message:</para>
+                from the validation processor are often difficult to understand
+                for<?oxy_delete author="George Bina" timestamp="20160125T123306+0200" content=" basic"?><?oxy_insert_start author="George Bina" timestamp="20160125T123306+0200"?>
+                novice<?oxy_insert_end?> users. For example, when an ID definition is missing, you
+                might get the following error message:</para>
             <para><errortext>cvc-id.1: There is no ID/IDREF binding for IDREF
                     'robert.tayor'.</errortext>
             </para>
@@ -168,7 +187,9 @@
                     {http://www.oxygenxml.com/doc/xsl/functions}createBox()</errortext></para>
             <para>In this case, a more appropriate way to present the error might be: "The function
                 'func:getButtonId()' has not been defined. Would you like to create this function or
-                reference a function with a similar name?"</para>
+                <?oxy_insert_start author="George Bina" timestamp="20160125T123430+0200"?>change the
+                <?oxy_insert_end?>reference<?oxy_insert_start author="George Bina" timestamp="20160125T123435+0200"?>
+                to<?oxy_insert_end?> a function with a similar name?"</para>
             <para><inlinemediaobject>
                     <imageobject>
                         <imagedata fileref="xslErr.png"/>
@@ -177,8 +198,9 @@
         </sect2>
         <sect2>
             <title>Fixing Custom Errors</title>
-            <para>When an XML document is validated against a Schematron schema, we obtain our own
-                customized errors. The errors are defined in the Schematron schema using the
+            <para>When an XML document is validated against a Schematron schema, we obtain
+                <?oxy_delete author="George Bina" timestamp="20160125T123500+0200" content="our own "?>customized
+                errors. The errors are defined in the Schematron schema using the
                     <code>sch:assert</code> and <code>sch:report</code> elements. In this case, it
                 is difficult, and almost impossible, to generate a fix based on the error message
                 and location. </para>
@@ -191,8 +213,14 @@
                 </mediaobject></para>
             <para>These fixes can be defined using the annotations support from Schematron.
                 Schematron allows elements and attributes from other namespaces to be added as
-                annotations in the schema. Thus, the validation of the Schematron will not be
-                affected if new elements and attributes are added in the schema. </para>
+                annotations in the schema. Thus,
+                the<?oxy_insert_start author="George Bina" timestamp="20160125T123630+0200"?>se
+                annotations will not interact with the default<?oxy_insert_end?> validation of the
+                Schematron
+                <?oxy_insert_start author="George Bina" timestamp="20160125T123649+0200"?>schemas <?oxy_insert_end?><?oxy_delete author="George Bina" timestamp="20160125T123658+0200" content="will not be affected if new elements and attributes are added in the schema."?>
+                <?oxy_insert_start author="George Bina" timestamp="20160125T123715+0200"?>and they
+                will be ignored by Schematron processors that do not support
+                them.<?oxy_insert_end?></para>
         </sect2>
     </sect1>
     <sect1>
@@ -214,8 +242,9 @@
         <para>The operations can be done with precision in a specified place and you do not need to
             modify the entire document.</para>
         <para>The first draft of the Schematron QuickFix specification was published in April 2015
-            on the <link xlink:href="https://www.w3.org/community/quickfix/">W3C community
-                group</link> page.</para>
+            on the <link xlink:href="https://www.w3.org/community/quickfix/">W3C
+                <?oxy_insert_start author="George Bina" timestamp="20160125T123920+0200"?>Quick-Fix
+                Support for XML <?oxy_insert_end?>community group</link> page.</para>
         <sect2>
             <title>SQF Benefits</title>
             <para>The Schematron schema can be used to validate any type of XML document. Thus,
@@ -225,34 +254,52 @@
                 such as:</para>
             <itemizedlist>
                 <listitem>
-                    <para>The title should not contain bold.</para>
+                    <para><?oxy_delete author="George Bina" timestamp="20160125T124017+0200" content="The "?>title
+                        should not contain
+                        bold<?oxy_delete author="George Bina" timestamp="20160125T124020+0200" content="."?></para>
                 </listitem>
                 <listitem>
-                    <para>A list should contain more than one list item.</para>
+                    <para><?oxy_delete author="George Bina" timestamp="20160125T124026+0200" content="A"?><?oxy_insert_start author="George Bina" timestamp="20160125T124027+0200"?>a<?oxy_insert_end?>
+                        list should contain more than one list
+                        item<?oxy_delete author="George Bina" timestamp="20160125T124031+0200" content="."?></para>
                 </listitem>
             </itemizedlist>
             <para>Also, more complex rules can be added, such as: <itemizedlist>
                     <listitem>
-                        <para>Ensure that the table layout is correct.</para>
+                        <para><?oxy_delete author="George Bina" timestamp="20160125T124038+0200" content="E"?><?oxy_insert_start author="George Bina" timestamp="20160125T124038+0200"?>e<?oxy_insert_end?>nsure
+                            that the table layout is
+                            correct<?oxy_delete author="George Bina" timestamp="20160125T124039+0200" content="."?></para>
                     </listitem>
                     <listitem>
-                        <para>Text needs to be normalized (NFC).</para>
+                        <para><?oxy_delete author="George Bina" timestamp="20160125T124043+0200" content="T"?><?oxy_insert_start author="George Bina" timestamp="20160125T124053+0200"?>t<?oxy_insert_end?>ext
+                            needs to be normalized
+                            (NFC)<?oxy_delete author="George Bina" timestamp="20160125T124041+0200" content="."?></para>
                     </listitem>
                 </itemizedlist></para>
             <para>For XSLT, XSD, or RNG documents, you can define coding styles, such as: </para>
             <itemizedlist>
                 <listitem>
-                    <para>The names of the variables must not contain '-', and it is recommended
-                        that they be in camel case.</para>
+                    <para><?oxy_delete author="George Bina" timestamp="20160125T124105+0200" content="T"?><?oxy_insert_start author="George Bina" timestamp="20160125T130131+0200"?>t<?oxy_insert_end?>he
+                        names of the variables must not contain '-', and it is recommended <?oxy_delete author="George Bina" timestamp="20160125T130735+0200" content="that they be in"?>
+                        <?oxy_insert_start author="George Bina" timestamp="20160125T130740+0200"?>to
+                        use the <?oxy_insert_end?>camel
+                        case<?oxy_insert_start author="George Bina" timestamp="20160125T130745+0200"?>
+                        format<?oxy_insert_end?><?oxy_delete author="George Bina" timestamp="20160125T130121+0200" content="."?></para>
                 </listitem>
                 <listitem>
-                    <para>The name length of templates and functions should not exceed a specified
-                        value.</para>
+                    <para><?oxy_delete author="George Bina" timestamp="20160125T130126+0200" content="T"?><?oxy_insert_start author="George Bina" timestamp="20160125T130133+0200"?>t<?oxy_insert_end?>he name<?oxy_insert_start author="George Bina" timestamp="20160125T130924+0200"?>s<?oxy_insert_end?>
+                        <?oxy_delete author="George Bina" timestamp="20160125T130846+0200" content="length "?>of
+                        templates and functions should not exceed a specified
+                        <?oxy_insert_start author="George Bina" timestamp="20160125T130854+0200"?>length<?oxy_insert_end?><?oxy_delete author="George Bina" timestamp="20160125T130124+0200" content="value."?></para>
                 </listitem>
             </itemizedlist>
-            <para>Some of these rules can be solved very easily, while a less experienced user might
-                make mistakes and add other errors. On the other hand, a user with experience might
-                be able solve them rather easily, but might need to perform a few operations.</para>
+            <para>Some of these rules can be solved very easily,
+                <?oxy_delete author="George Bina" timestamp="20160125T130944+0200" content="while"?><?oxy_insert_start author="George Bina" timestamp="20160125T130944+0200"?>but<?oxy_insert_end?>
+                a less experienced user
+                might<?oxy_insert_start author="George Bina" timestamp="20160125T130949+0200"?>
+                still<?oxy_insert_end?> make mistakes and add other errors. On the other hand, a
+                user with experience might be able solve them rather easily, but might need to
+                perform a few operations.</para>
             <para>For more complex problems (for instance, problems that will update multiple nodes
                 in the document or make complex conversions), it would be better to have an action
                 to do this automatically.</para>
@@ -825,3 +872,4 @@ queryBinding="xslt2">
 </article>
 
 
+<?oxy_options track_changes="on"?>
