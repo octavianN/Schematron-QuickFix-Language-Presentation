@@ -814,6 +814,14 @@ queryBinding="xslt2">
     </sect1>
     <sect1>
         <title>Conclusions and Future Plans</title>
+        <para>The Schematron QuickFix language is useful for XML projects because it offers
+            proposals to solve the Schematron validation errors and warnings. Thus, the users
+            understand the problem better, make fewer mistakes, and solve the problem in less time.
+            The language is very simple, has just a few elements, and can be easily adopted by the
+            Schematron developers to create quick-fix proposals. </para>
+        <para>From the implementations perspective, SQF should not be difficult to implement because
+            the language has only four basic operations (add, delete, replace, and string replace)
+            that must be supported.</para>
         <para>In the near future, we plan to publish the second draft of the Schematron QuickFix
             specification that will contain new things such as how you can execute fixes on other
             documents, new definitions, and examples for the SQF elements.</para>
