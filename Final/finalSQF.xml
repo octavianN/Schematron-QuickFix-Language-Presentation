@@ -24,18 +24,14 @@
         </author>
         <abstract>
             <para>Fixing XML validation errors can be challenging for many users, especially if they
-                are not very familiar with
-                <?oxy_insert_start author="Adeline" timestamp="20160123T115437+0100"?>the<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T115439+0100" content="XML"?>
-                syntax and
-                structure<?oxy_insert_start author="Adeline" timestamp="20160123T115445+0100"?> of
-                XML<?oxy_insert_end?>. For many years, development tools have provided ways to allow
-                users to select actions that automatically fix reported issues for certain
-                programming languages (such as Java, C, etc.). This functionality is usually called
-                "Quick Fixes". In a similar way, XML tools provide Quick Fixes for XML validation
-                errors. For instance, Eclipse has included XML Quick Fixes for over 10 years.
-                Another example of this idea is the spell checking functionality, which provides a
-                list of possible corrections and allows the user to select one of them as a
-                replacement for an incorrect word.</para>
+                are not very familiar with the syntax and structure of XML. For many years,
+                development tools have provided ways to allow users to select actions that
+                automatically fix reported issues for certain programming languages (such as Java,
+                C, etc.). This functionality is usually called "Quick Fixes". In a similar way, XML
+                tools provide Quick Fixes for XML validation errors. For instance, Eclipse has
+                included XML Quick Fixes for over 10 years. Another example of this idea is the
+                spell checking functionality, which provides a list of possible corrections and
+                allows the user to select one of them as a replacement for an incorrect word.</para>
             <para>The validation of XML documents against DTD, XML Schema, or RELAX NG schema
                 provides a limited set of possible problems and is usually only able to detect basic
                 structural errors (such as a missing element or attribute) and the corresponding
@@ -53,56 +49,46 @@
                 errors while trying to manually fix the reported problem. Providing a Quick Fix
                 functionality for Schematron validation errors will bridge this gap, saving time and
                 avoiding the potential for causing other issues.</para>
-            <para>Two years ago, the idea of Schematron QuickFix (SQF) was discussed during the XML Prague conference and it started to take shape. It has now reached a point where we have a draft specification available, a W3C community group dedicated to <link xlink:href="https://www.w3.org/community/quickfix/">XML Quick Fixes</link>, and two independent SQF implementations. The first draft of the Schematron QuickFix specification was published in April<?oxy_delete author="Adeline" timestamp="20160121T205939+0100" content=","?> 2015 and it is now available on <link xlink:href="http://schematron-quickfix.github.io/sqf">GitHub</link> and within the W3C "Quick-Fix Support for XML Community Group".</para>
-            <para>Schematron QuickFix defines a simple language to specify the actions that
-                <?oxy_insert_start author="Adeline" timestamp="20160123T131318+0100"?>are<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T131316+0100" content="will be"?>
-                used to fix the detected issues, layered on top of XPath and XSLT, and integrated
-                within Schematron schemas through the Schematron annotation support.</para>
+            <para>Two years ago, the idea of Schematron QuickFix (SQF) was discussed during the XML
+                Prague conference and it started to take shape. It has now reached a point where we
+                have a draft specification available, a W3C community group dedicated to <link
+                    xlink:href="https://www.w3.org/community/quickfix/">XML Quick Fixes</link>, and
+                two independent SQF implementations. The first draft of the Schematron QuickFix
+                specification was published in April 2015 and it is now available on <link
+                    xlink:href="http://schematron-quickfix.github.io/sqf">GitHub</link> and within
+                the W3C "Quick-Fix Support for XML Community Group".</para>
+            <para>Schematron QuickFix defines a simple language to specify the actions that are used
+                to fix the detected issues, layered on top of XPath and XSLT, and integrated within
+                Schematron schemas through the Schematron annotation support.</para>
             <para>In this session, we will present various use cases that are solved with Schematron
                 QuickFixes, ranging from simple to complex, sometimes involving changes in multiple
                 locations within a document, or even in external documents. We will also discuss the
-                language and
-                <?oxy_comment_start author="Adeline" timestamp="20160123T120243+0100" comment="Should we remove &quot;technological challenges&quot;? I don&apos;t think we discuss this, do we?"?>technological
-                challenges<?oxy_comment_end?> related to the SQF implementation. Join us to learn
-                how SQF can be useful in your next XML project!</para>
+                language and challenges related to the SQF implementation. Join us to learn how SQF
+                can be useful in your next XML project!</para>
             <para> </para>
         </abstract>
     </info>
     <sect1>
         <title>Introduction</title>
-        <para>Helping users to solve
-            errors<?oxy_delete author="George Bina" timestamp="20160125T090145+0200" content=" from"?><?oxy_insert_start author="George Bina" timestamp="20160125T090130+0200"?>
-            in<?oxy_insert_end?> XML documents has always been a challenge. There are various
-            solutions to generate
-            automatically<?oxy_delete author="George Bina" timestamp="20160125T090219+0200" content=" the"?>
-            proposals that fix the errors and
-            <?oxy_insert_start author="George Bina" timestamp="20160125T090251+0200"?>to
-            <?oxy_insert_end?>present them to the user. The fix proposals can be generated by the
-            validation engine, or based on the error messages, or on error codes that we get from
-            the validation engine. However, a language that can allow the developer to define fixes
-            is more powerful and flexible. </para>
+        <para>Helping users to solve errors in XML documents has always been a challenge. There are
+            various solutions to automatically generate  proposals that fix the errors and to
+            present them to the user. The fix proposals can be generated by the validation engine,
+            or based on the error messages, or on error codes that we get from the validation
+            engine. However, a language that can allow the developer to define fixes is more
+            powerful and flexible. </para>
         <para>Schematron has become more and more popular in the XML world. Companies are using
-            Schematron to enforce business
-            rules<?oxy_delete author="George Bina" timestamp="20160125T090408+0200" content=" to"?><?oxy_insert_start author="George Bina" timestamp="20160125T090410+0200"?>
-            on<?oxy_insert_end?> their documents and to verify the quality of their documents.
-            Schematron<?oxy_delete author="Adeline" timestamp="20160123T120450+0100" content=" schema"?>
-            is a language that defines rules for the structure and content that an XML document
-            should follow.</para>
-        <para><?oxy_delete author="Adeline" timestamp="20160123T120601+0100" content="The "?>Schematron
-            QuickFix (SQF)<?oxy_delete author="Adeline" timestamp="20160123T120607+0100" content=" "?><?oxy_insert_start author="Adeline" timestamp="20160123T120501+0100"?>
-            <?oxy_insert_end?>has been developed as an extension of the
-            Schematron<?oxy_delete author="Adeline" timestamp="20160123T120540+0100" content=" schema"?>
+            Schematron to enforce business rules on their documents and to verify the quality of
+            their documents. Schematron is a language that defines rules for the structure and
+            content that an XML document should follow.</para>
+        <para>Schematron QuickFix (SQF) has been developed as an extension of the Schematron
             language. It is a language that allows developers to define fixes for the Schematron
             validation errors. </para>
     </sect1>
     <sect1>
         <title>Validation Errors</title>
-        <para>From the
-            user<?oxy_insert_start author="Adeline" timestamp="20160121T203617+0100"?>'s<?oxy_insert_end?>
-            point of view the validation error can be described by three things: the validation
-            message, the location of the error (system ID and position in the document), and how to
-            fix<?oxy_delete author="George Bina" timestamp="20160125T090101+0200" content=" this"?><?oxy_insert_start author="George Bina" timestamp="20160125T090102+0200"?>
-            that<?oxy_insert_end?> error.</para>
+        <para>From the user's point of view the validation error can be described by three things:
+            the validation message, the location of the error (system ID and position in the
+            document), and how to fix that error.</para>
         <figure>
             <title>Validation Errors</title>
             <mediaobject>
@@ -125,39 +111,34 @@
             check the location of the problems, and determine what operations must be done.</para>
         <para>For the validation of an XML document against a Schematron schema, the errors are in
             fact constraints or business rules and are meant to be more easily understood by the
-            user. The Schematron
-            developer<?oxy_insert_start author="George Bina" timestamp="20160125T090642+0200"?>s<?oxy_insert_end?>
-            can better explain what operations should be done in order to
-            fix<?oxy_delete author="George Bina" timestamp="20160125T090653+0200" content=" the"?><?oxy_insert_start author="George Bina" timestamp="20160125T090653+0200"?>
-            a<?oxy_insert_end?> problem because they can use custom messages. Also, the location of
-            the problem can
-            be<?oxy_insert_start author="George Bina" timestamp="20160125T090717+0200"?>
-            better<?oxy_insert_end?> specified in the Schematron schema.</para>
-        <para>However, in both cases,
-            <?oxy_insert_start author="Adeline" timestamp="20160121T204258+0100"?>in order
-            <?oxy_insert_end?>to fix the error the user must do the operations manually and this can
-            result in generating even more errors. The automation of the error-fixing process will
-            help the user to solve the problem faster and with
-            fewer<?oxy_insert_start author="George Bina" timestamp="20160125T090805+0200"?> or
-            no<?oxy_insert_end?> errors.</para>
+            user. The Schematron developers can better explain what operations should be done in
+            order to fix a problem because they can use custom messages. Also, the location of the
+            problem can be specified better in the Schematron schema.</para>
+        <para>However, in both cases, to fix the error the user must do the operations manually and
+            this can result in generating even more errors. The automation of the error-fixing
+            process will help the user to solve the problem faster and with fewer or no
+            errors.</para>
         <para>A good example of error fixing is a spell checker. A spell checker presents errors but
             also offers a set of solutions to fix them. Similarly, solutions can be generated for
             XML validation errors.</para>
     </sect1>
     <sect1>
         <title>Fixing Validation Errors</title>
-        <para>Over the course of time various IDEs (such as Eclipse or IntelliJ IDEA) have implemented fixes for XML validation errors. In these cases, the implementation was made directly in the engine. However, it w<?oxy_insert_start author="Adeline" timestamp="20160121T224626+0100"?>ould<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T224624+0100" content="ill"?> be better to have an implementation that does not depend on the validation engine. A way to solve this is by analyzing the validation message, error code, and the error location that the engine provides.</para>
-        <para>We can say that the validation errors can be split
-            in<?oxy_insert_start author="Adeline" timestamp="20160123T121235+0100"?>to<?oxy_insert_end?>
-            two categories:</para>
+        <para>Over the course of time various IDEs (such as Eclipse or IntelliJ IDEA) have
+            implemented fixes for XML validation errors. In these cases, the implementation was made
+            directly in the engine. However, it would be better to have an implementation that does
+            not depend on the validation engine. A way to solve this is by analyzing the validation
+            message, error code, and the error location that the engine provides.</para>
+        <para>We can say that the validation errors can be split into two categories:</para>
         <para>
             <itemizedlist>
                 <listitem>
-                    <para>Predefined – defined in the validation engine. This is the case when an
+                    <para>Predefined – Defined in the validation engine. This is the case when an
                         XML document is validated against an XSD, RNG, or DTD schema.</para>
                 </listitem>
                 <listitem>
-                    <para>Custom – defined by the user. <?oxy_insert_start author="Adeline" timestamp="20160121T205139+0100"?>This is the case w<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T205151+0100" content="W"?>hen an XML document is validated against a Schematron schema.</para>
+                    <para>Custom – Defined by the user. This is the case when an XML document is
+                        validated against a Schematron schema.</para>
                 </listitem>
             </itemizedlist>
         </para>
@@ -168,15 +149,17 @@
                 this approach could be that each validation engine might provide its own predefined
                 messages and error codes. Therefore, you will need an implementation for each
                 validation engine.</para>
-            <para>However, by providing fix proposals for these type<?oxy_insert_start author="Adeline" timestamp="20160121T204826+0100"?>s<?oxy_insert_end?> of errors, the user will be helped with not only solving the problem, but also understanding it. The messages from the validation processor are often difficult to underst<?oxy_insert_start author="Adeline" timestamp="20160121T204929+0100"?>an<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T204928+0100" content="oo"?>d for basic users. For example, when an ID definition is missing, you might get the following error message:</para>
+            <para>However, by providing fix proposals for these types of errors, the user will be
+                helped with not only solving the problem, but also understanding it. The messages
+                from the validation processor are often difficult to understand for basic users. For
+                example, when an ID definition is missing, you might get the following error
+                message:</para>
             <para><errortext>cvc-id.1: There is no ID/IDREF binding for IDREF
                     'robert.tayor'.</errortext>
             </para>
             <para>It would be more appropriate to have a more understandable message, such as:
                 "There is an invalid ID reference: 'robert.tayor'. Would you like to change it to
-                <?oxy_insert_start author="Adeline" timestamp="20160121T205043+0100"?>the
-                <?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T205039+0100" content="a"?><?oxy_delete author="Adeline" timestamp="20160123T121346+0100" content=" "?>similar
-                ID: 'robert.taylor'?"</para>
+                the similar ID: 'robert.taylor'?"</para>
             <para>Another example could be when an XSL document is validated and we have an
                 undeclared function. This might cause the following error to be presented:</para>
             <para><errortext>XPST0017 XPath syntax error at char 0 on line 1802 near {...x($boxID,
@@ -212,8 +195,11 @@
         </sect2>
     </sect1>
     <sect1>
-        <title>Schematron Quick<?oxy_delete author="Adeline" timestamp="20160121T205623+0100" content=" "?>Fixes</title>
-        <para><?oxy_insert_start author="Adeline" timestamp="20160121T205649+0100"?>In order t<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T205656+0100" content="T"?>o allow users to create fixes for the Schematron error messages, the Schematron QuickFix (SQF) language was created as an extension of Schematron. Using the SQF language, users can define fixes for <emphasis>assert</emphasis> or <emphasis>report</emphasis> error messages. </para>
+        <title>Schematron Quick Fixes</title>
+        <para>To allow users to create fixes for the Schematron error messages, the Schematron
+            QuickFix (SQF) language was created as an extension of Schematron. Using the SQF
+            language, users can define fixes for <emphasis>assert</emphasis> or
+                <emphasis>report</emphasis> error messages. </para>
         <para>The Schematron QuickFix has been defined as a simple but powerful language. It defines
             some basic operations that need to be implemented by the processor.</para>
         <figure xml:id="simple_example">
@@ -249,19 +235,14 @@
                         <para>Ensure that the table layout is correct.</para>
                     </listitem>
                     <listitem>
-                        <para><?oxy_delete author="Adeline" timestamp="20160121T210332+0100" content="All"?>
-                            <?oxy_insert_start author="Adeline" timestamp="20160121T210339+0100"?>T<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T210337+0100" content="t"?>ext needs to be normalized (NFC).</para>
+                        <para> Text needs to be normalized (NFC).</para>
                     </listitem>
                 </itemizedlist></para>
             <para>For XSLT, XSD, or RNG documents, you can define coding styles, such as: </para>
             <itemizedlist>
                 <listitem>
-                    <para>The
-                        name<?oxy_insert_start author="Adeline" timestamp="20160121T210411+0100"?>s<?oxy_insert_end?>
-                        of the variables must not contain '-', and it is recommended
-                        t<?oxy_insert_start author="Adeline" timestamp="20160123T121738+0100"?>hat they are<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T121737+0100" content="o "?><?oxy_delete author="Adeline" timestamp="20160123T121745+0100" content="be"?>
-                        <?oxy_insert_start author="Adeline" timestamp="20160121T210624+0100"?>in
-                        <?oxy_insert_end?>camel case.</para>
+                    <para>The names of the variables must not contain '-', and it is recommended
+                        that they be in camel case.</para>
                 </listitem>
                 <listitem>
                     <para>The name length of templates and functions should not exceed a specified
@@ -277,50 +258,40 @@
         </sect2>
         <sect2>
             <title>SQF Implementations</title>
-            <para>A<?oxy_delete author="Adeline" timestamp="20160121T210739+0100" content="n"?>
-                SQF fix consists of a set of operations that must be performed in an XML document.
-                These are basic operations (add, delete, replace, and string replace) that
-                need<?oxy_delete author="Adeline" timestamp="20160121T210759+0100" content="s"?>
-                to make precise changes in the document. This means that when a
-                <?oxy_insert_start author="Adeline" timestamp="20160123T122129+0100"?>Q<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T122128+0100" content="q"?>uick<?oxy_delete author="Adeline" timestamp="20160123T122206+0100" content=" "?><?oxy_insert_start author="Adeline" timestamp="20160123T122132+0100"?>F<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T122131+0100" content="f"?>ix
-                is applied, only the affected part of the XML document should be changed and the
-                DOCTYPE declaration, entities, etc. must be preserved.</para>
-            <para>There are two types of implementations that can be used to execute Schematron Quick<?oxy_delete author="Adeline" timestamp="20160121T210900+0100" content=" "?>Fixes:<itemizedlist>
+            <para>An SQF fix consists of a set of operations that must be performed in an XML
+                document. These are basic operations (add, delete, replace, and string replace) that
+                need to make precise changes in the document. This means that when a fix is applied,
+                only the affected part of the XML document should be changed and the DOCTYPE
+                declaration, entities, etc. must be preserved.</para>
+            <para>There are two types of implementations that can be used to execute Schematron QuickFixes:<itemizedlist>
                     <listitem>
-                        <para>Using an engine (implemented in Java, C, or other language)
-                            that<?oxy_delete author="Adeline" timestamp="20160123T131826+0100" content=" will"?>
-                            collect<?oxy_insert_start author="Adeline" timestamp="20160123T131830+0100"?>s<?oxy_insert_end?>
-                            the fixes during the Schematron validation process,
-                            and<?oxy_delete author="Adeline" timestamp="20160123T131835+0100" content=" will"?>
-                            perform<?oxy_insert_start author="Adeline" timestamp="20160123T131839+0100"?>s<?oxy_insert_end?>
-                            the modification precisely (using the engine programming language) when
-                            the fix is applied. </para>
+                        <para>Using an engine (implemented in Java, C, or other language) that
+                            collects the fixes during the Schematron validation process, and
+                            performs the modification precisely (using the engine programming
+                            language) when the fix is applied. </para>
                     </listitem>
                     <listitem>
-                        <para>Using an XSLT engine
-                            that<?oxy_delete author="Adeline" timestamp="20160123T131847+0100" content=" will"?>
-                            generate<?oxy_insert_start author="Adeline" timestamp="20160123T131850+0100"?>s<?oxy_insert_end?>
-                            a set of XSLT scripts during the Schematron validation process, and
-                            these
-                            scripts<?oxy_insert_start author="Adeline" timestamp="20160123T131858+0100"?>
-                            are<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T131856+0100" content=" will be"?>
-                            applied when the fix is executed.</para>
+                        <para>Using an XSLT engine that generates a set of XSLT scripts during the
+                            Schematron validation process, and these scripts are applied when the
+                            fix is executed.</para>
                     </listitem>
                 </itemizedlist></para>
         </sect2>
     </sect1>
     <sect1>
         <title>Schematron QuickFix Language</title>
-        <para>As <?oxy_insert_start author="Adeline" timestamp="20160121T211015+0100"?>shown <?oxy_insert_end?>in the example above (see <xref linkend="simple_example"/>), the QuickFix (defined by the <code>sqf:fix</code> element) is structured as follows: </para>
+        <para>As shown in the example above (see <xref linkend="simple_example"/>), the QuickFix
+            (defined by the <code>sqf:fix</code> element) is structured as follows: </para>
         <itemizedlist>
             <listitem>
                 <para><emphasis>ID</emphasis> – Used to reference the QuickFix by
                         <code>sch:assert</code> or <code>sch:report</code> elements.</para>
             </listitem>
             <listitem>
-                <para><emphasis>Title and description</emphasis> – The <emphasis>title</emphasis> is used to <?oxy_delete author="Adeline" timestamp="20160121T211943+0100" content="describe "?><?oxy_insert_start author="Adeline" timestamp="20160121T211950+0100"?>name <?oxy_insert_end?>the operation of the QuickFix<?oxy_delete author="Adeline" timestamp="20160121T211955+0100" content=" with a short label"?>. The<?oxy_delete author="Adeline" timestamp="20160121T214543+0100" content=" optional"?>
-                    <emphasis>description</emphasis> can be used <?oxy_insert_start author="Adeline" timestamp="20160121T214559+0100"?>to give the user<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T214609+0100" content="as "?><?oxy_insert_start author="Adeline" timestamp="20160121T212021+0100"?>
-                    <?oxy_insert_end?>additional information <?oxy_insert_start author="Adeline" timestamp="20160121T214622+0100"?>regarding the QuickFix<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T214615+0100" content="for the user"?>.</para>
+                <para><emphasis>Title and description</emphasis> – The <emphasis>title</emphasis> is
+                    used for the name of the QuickFix. The optional <emphasis>description</emphasis>
+                    can be used to give the user additional information regarding the
+                    QuickFix.</para>
             </listitem>
             <listitem>
                 <para><emphasis>Operation</emphasis> – The <emphasis>Activity Elements</emphasis>
@@ -334,7 +305,12 @@
         </itemizedlist>
         <sect2>
             <title>Reference a QuickFix</title>
-            <para>To reference a QuickFix, the <code>sch:assert</code> or <code>sch:report</code> element needs a <code>sqf:fix</code> attribute with the ID of the QuickFix. In many cases there are multiple possible solutions for one error, and the <code>sqf:fix</code> attribute is able to reference<?oxy_delete author="Adeline" timestamp="20160121T212241+0100" content=" to"?> more than one QuickFix. In this case, the <code>sqf:fix</code> attribute should <?oxy_insert_start author="Adeline" timestamp="20160121T212633+0100"?>contain<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T212630+0100" content="have"?> a list of those QuickFix IDs (separated with whitespace<?oxy_delete author="Adeline" timestamp="20160121T212751+0100" content="s"?>) that should be referenced:</para>
+            <para>To reference a QuickFix, the <code>sch:assert</code> or <code>sch:report</code>
+                element needs a <code>sqf:fix</code> attribute with the ID of the QuickFix. In many
+                cases there are multiple possible solutions for one error, and the
+                    <code>sqf:fix</code> attribute is able to reference more than one QuickFix. In
+                this case, the <code>sqf:fix</code> attribute should contain a list of those
+                QuickFix IDs (separated with whitespace) that should be referenced:</para>
             <example>
                 <title>Reference to Multiple QuickFixes</title>
                 <programlisting>&lt;sch:rule context="title">
@@ -345,7 +321,7 @@ Bold element is not allowed in title.&lt;/sch:report>
         &lt;sqf:description>
             &lt;sqf:title>Change the bold element into text
             &lt;/sqf:title>
-            &lt;sqf:p>Remove the bold (b) markup and keep<?oxy_insert_start author="Adeline" timestamp="20160121T212838+0100"?> <?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T212831+0100" content="s "?>the 
+            &lt;sqf:p>Remove the bold (b) markup and keep the 
                    text content&lt;/sqf:p>
         &lt;/sqf:description>
         &lt;sqf:replace match="b" select="text()"/>
@@ -388,7 +364,7 @@ queryBinding="xslt2">
             &lt;sqf:description>
                 &lt;sqf:title>Change the bold element into text
                 &lt;/sqf:title>
-                &lt;sqf:p>Remove the bold (b) markup and keep<?oxy_delete author="Adeline" timestamp="20160121T213315+0100" content="s"?> the 
+                &lt;sqf:p>Remove the bold (b) markup and keep the 
                        text content&lt;/sqf:p>
             &lt;/sqf:description>
             &lt;sqf:replace match="b" select="text()"/>
@@ -407,7 +383,9 @@ queryBinding="xslt2">
             </sect3>
             <sect3>
                 <title>QuickFix Groups</title>
-                <para><?oxy_insert_start author="Adeline" timestamp="20160121T213334+0100"?>In order t<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T213341+0100" content="T"?>o avoid long lists of IDs, it is possible to reference a <emphasis>QuickFix group</emphasis>. A QuickFix group is a set of QuickFixes<?oxy_insert_start author="Adeline" timestamp="20160121T213436+0100"?>. A r<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T213432+0100" content=" and a r"?>eference to a QuickFix group is equal to a reference to each QuickFix in this group. </para>
+                <para>To avoid long lists of IDs, it is possible to reference a <emphasis>QuickFix
+                        group</emphasis>. A QuickFix group is a set of QuickFixes. A reference to a
+                    QuickFix group is equal to a reference to each QuickFix in this group. </para>
                 <example>
                     <title>Reference to a QuickFix Group</title>
                     <programlisting>&lt;sch:report test="exists(b)" 
@@ -418,7 +396,7 @@ queryBinding="xslt2">
         &lt;sqf:description>
             &lt;sqf:title>Change the bold element into text
             &lt;/sqf:title>
-            &lt;sqf:p>Remove the bold (b) markup and keep<?oxy_delete author="Adeline" timestamp="20160121T213512+0100" content="s"?> the 
+            &lt;sqf:p>Remove the bold (b) markup and keep the 
                 text content&lt;/sqf:p>
         &lt;/sqf:description>
         &lt;sqf:replace match="b" select="text()"/>
@@ -432,17 +410,22 @@ queryBinding="xslt2">
         &lt;sqf:delete match="b"/>
     &lt;/sqf:fix><emphasis role="bold">
 &lt;/sqf:group></emphasis></programlisting>
-                    <para>To reference a QuickFix group, the <code>sqf:group</code> element also has an <code>id</code> attribute. For the <code>sch:assert</code> or <code>sch:report</code> elements, there is no difference between referencing a QuickFix or <?oxy_insert_start author="Adeline" timestamp="20160121T213537+0100"?>a <?oxy_insert_end?>QuickFix group.</para>
+                    <para>To reference a QuickFix group, the <code>sqf:group</code> element also has
+                        an <code>id</code> attribute. For the <code>sch:assert</code> or
+                            <code>sch:report</code> elements, there is no difference between
+                        referencing a QuickFix or QuickFix group.</para>
                 </example>
-                <para>A QuickFix group can also be defined globally (in a<?oxy_delete author="Adeline" timestamp="20160121T213607+0100" content="n"?>
-                    <code>sqf:fixes</code> element) or locally (in a<?oxy_delete author="Adeline" timestamp="20160121T213613+0100" content="n"?>
-                    <code>sch:rule</code> element).</para>
+                <para>A QuickFix group can also be defined globally (in an <code>sqf:fixes</code>
+                    element) or locally (in an <code>sch:rule</code> element).</para>
             </sect3>
         </sect2>
         <sect2>
             <title>Title and Description</title>
-            <para>The title (<code>sqf:title</code> element) is very important for a QuickFix. It is a challenge for the developer to create short titles that provide the user with enough information to understand what will happen when the QuickFix is executed. As an <?oxy_insert_start author="Adeline" timestamp="20160121T214738+0100"?>optional<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T214735+0100" content="additional"?>
-                <?oxy_insert_start author="Adeline" timestamp="20160121T214758+0100"?>help<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T214753+0100" content="tool"?>, the developer can deliver more information by using <code>sqf:p</code> elements.</para>
+            <para>The title (<code>sqf:title</code> element) is very important for a QuickFix. It is
+                a challenge for the developer to create short titles that provide the user with
+                enough information to understand what will happen when the QuickFix is executed. The
+                developer can also deliver more information by using <code>sqf:p</code>
+                elements.</para>
             <para>Also, as with Schematron error messages, the title and optional description can be
                 customized by using the Schematron elements <code>sch:value-of</code> or
                     <code>sch:name</code>.</para>
@@ -451,7 +434,7 @@ queryBinding="xslt2">
                 <programlisting>&lt;sqf:fix id="delete">
     &lt;sqf:description>
         &lt;sqf:title>Delete the <emphasis role="bold">&lt;sch:name/></emphasis> element&lt;/sqf:title>
-        &lt;sqf:p>The <emphasis role="bold">&lt;sch:name/></emphasis> element <?oxy_insert_start author="Adeline" timestamp="20160121T215041+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T215040+0100" content="was"?> mis<?oxy_delete author="Adeline" timestamp="20160121T214852+0100" content="s"?>placed in the 
+        &lt;sqf:p>The <emphasis role="bold">&lt;sch:name/></emphasis> element is misplaced in the 
                <emphasis role="bold">&lt;sch:name path=".."/></emphasis> element.&lt;/sqf:p>
         &lt;sqf:p>This QuickFix will delete the <emphasis role="bold">&lt;sch:name/></emphasis> 
                element<emphasis role="bold">&lt;sch:value-of select="
@@ -469,13 +452,18 @@ queryBinding="xslt2">
         </sect2>
         <sect2>
             <title>Activity Elements</title>
-            <para>After the description, the developer <?oxy_insert_start author="Adeline" timestamp="20160121T215137+0100"?>has to<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T215136+0100" content="should"?> specify what the QuickFix should actually do. To define actions, the developer can choose between four types of <emphasis>Activity Elements</emphasis>. </para>
+            <para>After the description, the developer must specify what the QuickFix should
+                actually do. To define actions, the developer can choose between four types of
+                    <emphasis>Activity Elements</emphasis>. </para>
             <para>The developer can also add any number of Activity Elements to one QuickFix. Each
-                Activity Element
-                <?oxy_insert_start author="Adeline" timestamp="20160123T131453+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T131451+0100" content="will be"?>
-                executed separately, in the context of the node where the error occurred (matched by
-                the <code>sch:rule</code> element).</para>
-            <para>All Activity Elements have a <code>match</code> attribute to select nodes by XPath, relative to the context node of the error. These nodes are called <emphasis>anchor<?oxy_insert_start author="Adeline" timestamp="20160121T215722+0100"?> nodes<?oxy_insert_end?></emphasis><?oxy_delete author="Adeline" timestamp="20160121T215730+0100" content=" nodes"?>. The kind of processing of the anchor nodes depends on the type, additional attributes, and the content of the Activity Element. An Activity Element that has no <code>match</code> attribute selects the context of the error as its anchor node.</para>
+                Activity Element is executed separately, in the context of the node where the error
+                occurred (matched by the <code>sch:rule</code> element).</para>
+            <para>All Activity Elements have a <code>match</code> attribute to select nodes by
+                XPath, relative to the context node of the error. These nodes are called
+                    <emphasis>anchor nodes</emphasis>. The kind of processing of the anchor nodes
+                depends on the type, additional attributes, and the content of the Activity Element.
+                An Activity Element that has no <code>match</code> attribute selects the context of
+                the error as its anchor node.</para>
             <para>There are four types of Activity Elements:</para>
             <itemizedlist>
                 <listitem>
@@ -510,14 +498,11 @@ queryBinding="xslt2">
         <emphasis role="bold">&lt;sqf:delete/></emphasis>
     &lt;/sqf:fix>
 &lt;/sch:rule></programlisting>
-                    <para>The empty <code>p</code> element
-                        <?oxy_insert_start author="Adeline" timestamp="20160123T123432+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T123426+0100" content="will be"?>
-                        deleted by the QuickFix <code>delete</code>.</para>
+                    <para>The empty <code>p</code> element is deleted by the QuickFix
+                            <code>delete</code>.</para>
                 </example>
                 <example>
-                    <title>Delete Nodes by
-                        <?oxy_insert_start author="Adeline" timestamp="20160123T123257+0100"?>using the
-                        <?oxy_insert_end?>Match Attribute</title>
+                    <title>Delete Nodes by Using the Match Attribute</title>
                     <programlisting>&lt;sch:rule context="title">
     &lt;sch:report test="comment()" 
         sqf:fix="deleteComment"> 
@@ -529,54 +514,56 @@ queryBinding="xslt2">
         <emphasis role="bold">&lt;sqf:delete match="comment()"/></emphasis>
     &lt;/sqf:fix>
 &lt;/sch:rule></programlisting>
-                    <para>All comments in the <code>title</code> element
-                        <?oxy_insert_start author="Adeline" timestamp="20160123T123443+0100"?>are<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T123441+0100" content="will be"?>
-                        deleted by the QuickFix <code>deleteComment</code>.</para>
+                    <para>All comments in the <code>title</code> element are deleted by the QuickFix
+                            <code>deleteComment</code>.</para>
                 </example>
             </sect3>
             <sect3>
-                <title>Replace Nodes <?oxy_insert_start author="Adeline" timestamp="20160121T220644+0100"?>by<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T220643+0100" content="with"?> New Content</title>
-                <para>The Activity Element <code>sqf:replace</code> replaces each anchor node <?oxy_insert_start author="Adeline" timestamp="20160121T220554+0100"?>by<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T220552+0100" content="with"?> new content. There are three <?oxy_insert_start author="Adeline" timestamp="20160121T222500+0100"?>methods<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T222458+0100" content="ways"?> to create new content in SQF. In some cases, they can also be combined.</para>
+                <title>Replace Nodes with New Content</title>
+                <para>The Activity Element <code>sqf:replace</code> replaces each anchor node with
+                    new content. There are three methods to create new content in SQF. In some
+                    cases, they can also be combined.</para>
                 <sect4>
-                    <title>Replace<?oxy_delete author="Adeline" timestamp="20160121T220627+0100" content=" by"?> using SQF Attributes</title>
-                    <para>The combination of the attributes <code>node-type</code> and <code>target</code> creates exactly one node. The <code>node-type</code> attribute specifies the type of the node with the values: <code>element</code>, <code>attribute</code>, <code>processing-instruction</code>, <code>pi</code>, <code>comment</code>, or <code>keep</code>. The value <code>pi</code> is the short version of <code>processing-instruction</code>. The value <code>keep</code> is provided to create the same type of node<?oxy_delete author="Adeline" timestamp="20160121T221110+0100" content=", such"?> as the anchor node. </para>
+                    <title>Replace by Using SQF Attributes</title>
+                    <para>The combination of the attributes <code>node-type</code> and
+                            <code>target</code> creates exactly one node. The <code>node-type</code>
+                        attribute specifies the type of the node with the values:
+                            <code>element</code>, <code>attribute</code>,
+                            <code>processing-instruction</code>, <code>pi</code>,
+                            <code>comment</code>, or <code>keep</code>. The value <code>pi</code> is
+                        the short version of <code>processing-instruction</code>. The value
+                            <code>keep</code> is provided to create the same type of node as the
+                        anchor node. </para>
                     <para>If the value of the <code>node-type</code> attribute is not
-                            <code>comment</code>, the <code>target</code> attribute is
-                        <?oxy_insert_start author="Adeline" timestamp="20160121T221609+0100"?>required<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T221607+0100" content="needed"?>
-                        to specify the name of the new node. The attribute value
-                        <?oxy_insert_start author="Adeline" timestamp="20160123T123736+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T123734+0100" content="will be"?>
-                        analyzed like an attribute value template (as defined in XSLT: <uri
+                            <code>comment</code>, the <code>target</code> attribute is required to
+                        specify the name of the new node. The attribute value is analyzed like an
+                        attribute value template (as defined in XSLT: <uri
                             xlink:href="https://www.w3.org/TR/xslt20/#attribute-value-templates"
                             >https://www.w3.org/TR/xslt20/#attribute-value-templates</uri>). An
                         XPath expression, which is marked with curly brackets
-                        (<code>{XPath}</code>),
-                        <?oxy_insert_start author="Adeline" timestamp="20160123T131506+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T131504+0100" content="will be"?>
-                        evaluated to generate the node name. After evaluation, the value needs to be
-                        a valid <code>xs:QName</code>.</para>
-                    <para><?oxy_delete author="Nico Kutscherauer" timestamp="20160123T141404+0100" content="To specify the value or content of the new node, this way is combinable with one of the other ways to create new content."?><?oxy_insert_start author="Nico Kutscherauer" timestamp="20160123T141404+0100"?>You can combine this method of specifying the value or content of the new node with one of the other two methods of creating new content.<?oxy_insert_end?><?oxy_comment_start author="Octavian" timestamp="20160121T151528+0200" comment="You can combine this method of specifying the value or content of the new node with one of the other ways of creating new content. If the attributes generate an element, the new content, generated by the second way, will be the new content of this element. Otherwise, the new content is transformed to an atomic value (attribute value, comment value, etc.) in the same way as child nodes of xsl:attribute elements are transformed to attribute values in XSLT."?> If the attributes <?oxy_insert_start author="Adeline" timestamp="20160121T222802+0100"?><code>node-type</code> and <code>target</code> create<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T222807+0100" content="generate"?> an element, the new content, generated by <?oxy_insert_start author="Adeline" timestamp="20160121T222844+0100"?>using <?oxy_insert_end?>the second <?oxy_insert_start author="Adeline" timestamp="20160121T222835+0100"?>method<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T222834+0100" content="way"?><?oxy_insert_start author="Adeline" timestamp="20160121T222852+0100"?> (described below)<?oxy_insert_end?>, <?oxy_insert_start author="Adeline" timestamp="20160123T131941+0100"?>becomes<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T131934+0100" content="will be"?> the new content of this element. Otherwise<?oxy_insert_start author="Adeline" timestamp="20160123T134657+0100"?>,<?oxy_insert_end?> the new content <?oxy_insert_start author="Adeline" timestamp="20160121T223351+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T223349+0100" content="will be"?> transformed <?oxy_insert_start author="Adeline" timestamp="20160121T223052+0100"?>in<?oxy_insert_end?>to an atomic value (attribute value, comment value, etc.) in the same way, as child nodes of <?oxy_insert_start author="Adeline" timestamp="20160121T223125+0100" type="surround"?><code><?oxy_insert_end?>xsl:attribute</code> elements <?oxy_insert_start author="Adeline" timestamp="20160121T223403+0100"?>are<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T223401+0100" content="will be"?> transformed to attribute values in XSLT.<?oxy_comment_end?></para>
+                        (<code>{XPath}</code>), is evaluated to generate the node name. After
+                        evaluation, the value needs to be a valid <code>xs:QName</code>.</para>
+                    <para>You can combine this method of specifying the value or content of the new
+                        node with one of the other two methods of creating new content. If the
+                        attributes <code>node-type</code> and <code>target</code> create an element,
+                        the new content generated by using the second method (described below)
+                        becomes the new content of this element. Otherwise, the new content is
+                        transformed into an atomic value (attribute value, comment value, etc.) in
+                        the same way as child nodes of <code>xsl:attribute</code> elements are
+                        transformed to attribute values in XSLT.</para>
                 </sect4>
                 <sect4>
-                    <title>Replace<?oxy_delete author="Adeline" timestamp="20160121T223413+0100" content=" by"?> using XPath</title>
+                    <title>Replace by Using XPath</title>
                     <para>The <code>select</code> attribute of the Activity Element creates new
-                        content by using XPath. The given XPath expression
-                        <?oxy_insert_start author="Adeline" timestamp="20160123T123958+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T123956+0100" content="will be"?>
-                        evaluated in the context of the anchor node. The return value
-                        <?oxy_insert_start author="Adeline" timestamp="20160123T124005+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T124003+0100" content="will be"?>
-                        used to generate new content. Returned nodes
-                        <?oxy_insert_start author="Adeline" timestamp="20160123T124011+0100"?>are<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T124010+0100" content="will be"?>
-                        copied and atomic values
-                        <?oxy_insert_start author="Adeline" timestamp="20160123T124021+0100"?>are<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T124019+0100" content="will be"?>
-                        transformed to text nodes.</para>
-                    <para>If the <code>select</code> attribute is set, the Activity Element
-                        <?oxy_delete author="Adeline" timestamp="20160122T163718+0100" content="needs to "?><?oxy_insert_start author="Adeline" timestamp="20160122T163724+0100"?>must
-                        <?oxy_insert_end?>be empty.</para>
+                        content by using XPath. The given XPath expression is evaluated in the
+                        context of the anchor node. The return value is used to generate new
+                        content. Returned nodes are copied and atomic values are transformed to text
+                        nodes.</para>
+                    <para>If the <code>select</code> attribute is set, the Activity Element must be
+                        empty.</para>
                     <example xml:id="example_create_content1">
-                        <title>Create Nodes
-                            <?oxy_insert_start author="Adeline" timestamp="20160122T163806+0100"?>with
-                            <?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T163805+0100" content="by "?>the
-                            SQF Attributes and Copy Nodes
-                            <?oxy_insert_start author="Adeline" timestamp="20160122T163815+0100"?>with
-                            <?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T163814+0100" content="by "?>XPath</title>
+                        <title>Create Nodes with the SQF Attributes and Copy Nodes with
+                            XPath</title>
                         <programlisting>&lt;sch:rule context="b">
     &lt;sch:report test="ancestor::b" 
         sqf:fix="italic"> 
@@ -588,46 +575,25 @@ queryBinding="xslt2">
         &lt;sqf:replace<emphasis role="bold"> target="i" node-type="element" select="node()"</emphasis>/>
     &lt;/sqf:fix>
 &lt;/sch:rule></programlisting>
-                        <para>The recursive <code>b</code> element
-                            <?oxy_insert_start author="Adeline" timestamp="20160123T124649+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T124647+0100" content="will be"?>
-                            replaced by an <code>i</code> element. The content
-                            <?oxy_insert_start author="Adeline" timestamp="20160123T124657+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T124655+0100" content="will be"?>
-                            copied.</para>
+                        <para>The recursive <code>b</code> element is replaced by an <code>i</code>
+                            element. The content is copied.</para>
                     </example>
                 </sect4>
                 <sect4>
-                    <title>Replace<?oxy_delete author="Adeline" timestamp="20160121T223831+0100" content=" by"?>
-                        using the Content</title>
+                    <title>Replace by Using New Content</title>
                     <para>If the <code>select</code> attribute is omitted, the content of the
-                        Activity Element
-                        <?oxy_insert_start author="Adeline" timestamp="20160121T223846+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160121T223844+0100" content="will be"?>
-                        used to create new content. The content
-                        <?oxy_insert_start author="Adeline" timestamp="20160123T131551+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T131549+0100" content="will be"?>
-                        evaluated
-                        <?oxy_insert_start author="Adeline" timestamp="20160122T163957+0100"?>in
-                        <?oxy_insert_end?>the same
-                        <?oxy_insert_start author="Adeline" timestamp="20160121T224200+0100"?>way
-                        <?oxy_insert_end?>as the content of an <code>xsl:template</code> element in
-                        XSLT 2.0. That also means that any element<?oxy_delete author="Adeline" timestamp="20160122T164016+0100" content="s"?>
-                        <?oxy_insert_start author="Adeline" timestamp="20160122T164026+0100"?>being
-                        <?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T164019+0100" content="that are "?>not
-                        in the XSLT namespace
-                        <?oxy_insert_start author="Adeline" timestamp="20160123T124810+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T124808+0100" content="will be"?>
-                        handled as Literal Result
-                        Element<?oxy_delete author="Adeline" timestamp="20160122T164038+0100" content="s"?>.
-                        Exceptions are the SQF element <code>sqf:keep</code> and the Schematron
-                        elements <code>sch:let</code>, <code>sch:value-of</code>, and
-                            <code>sch:name</code>.<?oxy_insert_start author="Adeline" timestamp="20160123T125227+0100"?>
-                        The Schematron elements are handled in the same way as in Schematron. The
+                        Activity Element is used to create new content. The content is evaluated in
+                        the same way as the content of an <code>xsl:template</code> element in XSLT
+                        2.0. That also means that any element that is not in the XSLT namespace is
+                        handled as a Literal Result Element. Exceptions are the SQF element
+                            <code>sqf:keep</code> and the Schematron elements <code>sch:let</code>,
+                            <code>sch:value-of</code>, and <code>sch:name</code>. The Schematron
+                        elements are handled in the same way as in Schematron. The
                             <code>sqf:keep</code> element will copy nodes that are selected by the
-                        XPath expression in the <code>select</code> attribute.<?oxy_insert_end?>
-                    </para>
-                    <?oxy_delete author="Adeline" timestamp="20160123T125239+0100" content="&lt;para&gt;The Schematron elements will be handled as they are in Schematron. The &lt;code&gt;sqf:keep&lt;/code&gt; element will copy nodes that are selected by the XPath expression in the &lt;code&gt;select&lt;/code&gt; attribute.&lt;/para&gt;"?>
+                        XPath expression in the <code>select</code> attribute. </para>
                     <para>The initial context of this "template" will be the anchor node.</para>
                     <example>
-                        <title>Create Nodes
-                            <?oxy_insert_start author="Adeline" timestamp="20160122T164548+0100"?>with<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T164547+0100" content="by"?>
-                            the Content</title>
+                        <title>Create Nodes with New Content</title>
                         <programlisting>&lt;sqf:fix id="italic">
     &lt;sqf:description>
         &lt;sqf:title>Change it to italic.&lt;/sqf:title>
@@ -646,37 +612,18 @@ queryBinding="xslt2">
             </sect3>
             <sect3>
                 <title>Add the New Content</title>
-                <para><?oxy_insert_start author="Adeline" timestamp="20160122T165751+0100"?>For
-                    inserting
-                    <?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T165808+0100" content="To insert "?>new
-                    content without replacing existing nodes, the Activity Element
+                <para>To insert new content without replacing existing nodes, the Activity Element
                         <code>sqf:add</code> is used. It creates new content in the same way as the
-                        <code>sqf:replace</code> element, but the new content
-                    <?oxy_insert_start author="Adeline" timestamp="20160123T125530+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T125528+0100" content="will be"?>
-                    inserted relative to each anchor node instead of replacing it. </para>
-                <para><?oxy_insert_start author="Adeline" timestamp="20160122T170023+0100"?>In order
-                    to<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T170030+0100" content="To"?>
-                    specify the exact position, the <code>sqf:add</code> element can have a
-                        <code>position</code> attribute to
-                    <?oxy_insert_start author="Adeline" timestamp="20160122T170048+0100"?>indicate
-                    <?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T170046+0100" content="specify "?>that
-                    the new content
-                    <?oxy_insert_start author="Adeline" timestamp="20160123T131629+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T131627+0100" content="will be"?>
-                    inserted after (value
-                    <code>after</code>)<?oxy_insert_start author="Adeline" timestamp="20160122T170213+0100"?>
-                    or<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T170212+0100" content=","?>
-                    before (value <code>before</code>) the anchor node,
-                    <?oxy_delete author="Adeline" timestamp="20160122T170138+0100" content="or "?>as
-                    the first (value <code>first-child</code> – default value) or
-                    <?oxy_insert_start author="Adeline" timestamp="20160122T170148+0100"?>as the
-                    <?oxy_insert_end?>last child (value <code>last-child</code>) of the anchor node.
-                    If the new content is an attribute, the <code>position</code> attribute should
-                    not be used because it
-                    <?oxy_insert_start author="Adeline" timestamp="20160123T125607+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T125606+0100" content="will"?>
-                    always
-                    <?oxy_delete author="Adeline" timestamp="20160123T125612+0100" content="be "?>added
-                    <?oxy_insert_start author="Adeline" timestamp="20160122T170327+0100"?>automatically
-                    <?oxy_insert_end?>as an attribute of the anchor node.</para>
+                        <code>sqf:replace</code> element, but the new content is inserted relative
+                    to each anchor node instead of replacing it. </para>
+                <para>To specify the exact position, the <code>sqf:add</code> element can have a
+                        <code>position</code> attribute to indicate that the new content is inserted
+                    after (value <code>after</code>), before (value <code>before</code>) the anchor
+                    node, as the first (value <code>first-child</code> – default value), or as the
+                    last child (value <code>last-child</code>) of the anchor node. If the new
+                    content is an attribute, the <code>position</code> attribute should not be used
+                    because it is always added automatically as an attribute of the anchor
+                    node.</para>
                 <example>
                     <title>Add Nodes</title>
                     <programlisting>&lt;sch:rule context="h2">
@@ -690,34 +637,18 @@ queryBinding="xslt2">
         <emphasis role="bold">&lt;sqf:add node-type="element" target="h1" position="before"/></emphasis>
     &lt;/sqf:fix>
 &lt;/sch:rule></programlisting>
-                    <para>Directly before the <code>h2</code>, a new <code>h1</code>
-                        <?oxy_insert_start author="Adeline" timestamp="20160123T131642+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T131641+0100" content="will be"?>
-                        inserted. Because there is no content defined for the new element, the
-                            <code>h1</code>
-                        <?oxy_insert_start author="Adeline" timestamp="20160123T131655+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T131653+0100" content="will be"?>
-                        empty.</para>
+                    <para>Directly before the <code>h2</code>, a new <code>h1</code> is inserted.
+                        Because there is no content defined for the new element, the <code>h1</code>
+                        is empty.</para>
                 </example>
             </sect3>
             <sect3>
                 <title>Replace Substrings</title>
-                <para>The Activity Element <code>sqf:stringReplace</code> is a special
-                    <?oxy_insert_start author="Adeline" timestamp="20160122T170652+0100"?>case<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T170651+0100" content="type"?>.
-                    <?oxy_insert_start author="Adeline" timestamp="20160122T170900+0100"?>There is a
-                    <?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T170903+0100" content="It has a "?>restriction
-                    <?oxy_insert_start author="Adeline" timestamp="20160122T170907+0100"?>for<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T170922+0100" content="to"?>
-                    the anchor
-                    nodes<?oxy_insert_start author="Adeline" timestamp="20160122T170935+0100"?>:<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T170940+0100" content=" in that"?>
-                    they
-                    <?oxy_insert_start author="Adeline" timestamp="20160122T170950+0100"?>must<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T170954+0100" content="need to"?>
-                    be text nodes. These text nodes
-                    <?oxy_insert_start author="Adeline" timestamp="20160123T125731+0100"?>are<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T125729+0100" content="will be"?>
-                    analyzed by a regular expression
-                    <?oxy_insert_start author="Adeline" timestamp="20160122T171039+0100"?>provided<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T171037+0100" content="given"?>
-                    in the <code>regex</code> attribute. Each substring of the anchor text node that
-                    matches to the regular expression
-                    <?oxy_insert_start author="Adeline" timestamp="20160123T125751+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T125750+0100" content="will be"?>
-                    replaced by new content. The new content
-                    <?oxy_insert_start author="Adeline" timestamp="20160123T125759+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T125758+0100" content="will be"?>
+                <para>The Activity Element <code>sqf:stringReplace</code> is a special case. There
+                    is a restriction for the anchor nodes in that they must be text nodes. These
+                    text nodes are analyzed by a regular expression provided in the
+                        <code>regex</code> attribute. Each substring of the anchor text node that
+                    matches to the regular expression is replaced by new content. The new content is
                     created in the same way as the <code>sqf:replace</code> element, although the
                     attributes <code>target</code> and <code>node-type</code> are not available for
                     the <code>sqf:stringReplace</code> element.</para>
@@ -728,7 +659,7 @@ queryBinding="xslt2">
     More than three underscores in a row shouldn't be used.&lt;/sch:report>
 &lt;sqf:fix id="form">
     &lt;sqf:description>
-        &lt;sqf:title>Replace<?oxy_insert_start author="Adeline" timestamp="20160123T125944+0100"?> <?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T125943+0100" content=" "?>the mis<?oxy_delete author="Adeline" timestamp="20160122T171613+0100" content="s"?>used characters by a form element.&lt;/sqf:title>
+        &lt;sqf:title>Replace the misused characters by a form element.&lt;/sqf:title>
     &lt;/sqf:description>
     <emphasis role="bold">&lt;sqf:stringReplace regex="___+">
         &lt;form/>
@@ -748,10 +679,8 @@ queryBinding="xslt2">
                     this issue is impossible because there is an unlimited number of possible
                     titles. Therefore, additional input from the user is needed. </para>
                 <para>For this case, one or more <emphasis>User Entries</emphasis> can be defined
-                    for any QuickFix. The User Entry acts like a parameter whose
-                    value<?oxy_insert_start author="Adeline" timestamp="20160123T130545+0100"?>
-                    is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T130542+0100" content=" will be"?>
-                    set by the user during the execution of the QuickFix.</para>
+                    for any QuickFix. The User Entry acts like a parameter whose value is set by the
+                    user during the execution of the QuickFix.</para>
                 <example>
                     <title>User Entry</title>
                     <programlisting>&lt;sch:rule context="title">
@@ -776,24 +705,15 @@ queryBinding="xslt2">
 &lt;/sch:rule></programlisting>
                 </example>
                 <para>The <code>sqf:user-entry</code> element has a <code>name</code> attribute and
-                    contains a<?oxy_delete author="Adeline" timestamp="20160123T130616+0100" content="n"?>
-                    <code>sqf:description</code> element. The <code>name</code> attribute specifies
-                    the name of the User Entry. For XPath expressions of all Activity Elements, a
-                    variable
-                    <?oxy_insert_start author="Adeline" timestamp="20160123T130634+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T130633+0100" content="will"?>
-                    now<?oxy_delete author="Adeline" timestamp="20160123T130638+0100" content=" be"?>
-                    available
-                    <?oxy_insert_start author="Adeline" timestamp="20160122T172713+0100"?>having<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T172712+0100" content="with"?>
-                    the name of the User Entry, and the variable can be used to
-                    access<?oxy_delete author="Adeline" timestamp="20160122T172449+0100" content=" to"?>
-                    the value of the User Entry.</para>
-                <para>The <code>sqf:description</code> element
-                    <?oxy_insert_start author="Adeline" timestamp="20160123T130655+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T130653+0100" content="will be"?>
-                    used to define a title (<code>sqf:title</code>) and optionally an additional
-                    description (<code>sqf:p</code> elements)
-                    <?oxy_insert_start author="Adeline" timestamp="20160122T172935+0100"?>of<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T172915+0100" content="to describe"?>
-                    the particular use-case of the User
-                    Entry<?oxy_delete author="Adeline" timestamp="20160122T173417+0100" content=" element"?>.</para>
+                    contains an <code>sqf:description</code> element. The <code>name</code>
+                    attribute specifies the name of the User Entry. For XPath expressions of all
+                    Activity Elements, a variable is now available that has the name of the User
+                    Entry, and the variable can be used to access the value of the User
+                    Entry.</para>
+                <para>The <code>sqf:description</code> element is used to define a title
+                        (<code>sqf:title</code>) and optionally an additional description
+                        (<code>sqf:p</code> elements) of the particular use-case of the User
+                    Entry.</para>
             </sect3>
             <sect3>
                 <title>Use-when Condition</title>
@@ -831,15 +751,11 @@ queryBinding="xslt2">
     &lt;/section>
 &lt;/article></programlisting>
                     <para>Both titles will produce the same error, but for the first title, the
-                        QuickFix <code>deleteBold</code> is useless because after
-                        <?oxy_insert_start author="Adeline" timestamp="20160123T130758+0100"?>its<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T130756+0100" content="the"?>
-                        execution the <code>title</code> element would be empty and would produce
-                        another kind of error (caused by the <code>sch:assert</code>
-                        element).</para>
+                        QuickFix <code>deleteBold</code> is useless because after its execution the
+                            <code>title</code> element would be empty and would produce another kind
+                        of error (caused by the <code>sch:assert</code> element).</para>
                 </example>
-                <para><?oxy_insert_start author="Adeline" timestamp="20160122T173535+0100"?>In order
-                    to<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T173543+0100" content="To"?>
-                    avoid such a subsequent error, the use-when condition helps. The XPath
+                <para>To avoid such a subsequent error, the use-when condition helps. The XPath
                     expression in the <code>use-when</code> attribute of the <code>sqf:fix</code>
                     element is a condition to provide the QuickFix: </para>
                 <example>
@@ -853,16 +769,9 @@ queryBinding="xslt2">
     &lt;/sqf:description>
     &lt;sqf:delete match="b"/>
 &lt;/sqf:fix></programlisting>
-                    <para>The QuickFix <code>deleteBold</code>
-                        <?oxy_insert_start author="Adeline" timestamp="20160123T130830+0100"?>is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160123T130828+0100" content="will be"?>
-                        proposed to the user only if the <code>title</code> element
-                        <?oxy_insert_start author="Adeline" timestamp="20160122T174037+0100"?>contains
-                        text other than whitespace and <?oxy_insert_end?>has a
-                        node<?oxy_insert_start author="Adeline" timestamp="20160122T173852+0100"?>
-                        which
-                        is<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T173844+0100" content=", it is"?>
-                        not a <code>b</code>
-                        element<?oxy_delete author="Adeline" timestamp="20160122T173816+0100" content=", and it contains text other than whitespaces"?>.</para>
+                    <para>The QuickFix <code>deleteBold</code> is proposed to the user only if the
+                            <code>title</code> element contains text other than whitespaces and has
+                        a node that is not a <code>b</code> element.</para>
                 </example>
                 <para>The <code>use-when</code> attribute is also available for each Activity
                     Element, so the developer is able to specify use-when conditions for each single
@@ -871,34 +780,30 @@ queryBinding="xslt2">
         </sect2>
     </sect1>
     <sect1>
-        <title>Projects using SQF</title>
+        <title>Projects Using SQF</title>
         <para>There are some projects available that use the SQF language to propose fixes:</para>
         <itemizedlist>
             <listitem>
                 <para>Dynamic Information Model (DIM) project (<link
                         xlink:href="https://github.com/oxygenxml/dim"
-                        >https://github.com/oxygenxml/dim</link>) – uses SQF to propose
-                    <?oxy_insert_start author="Adeline" timestamp="20160122T174313+0100"?>Q<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T174312+0100" content="q"?>uick
-                    <?oxy_insert_start author="Adeline" timestamp="20160122T174317+0100"?>F<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T174316+0100" content="f"?>ixes
-                    for the Schematron rules.</para>
+                        >https://github.com/oxygenxml/dim</link>) – Uses SQF to propose fixes for
+                    the Schematron rules.</para>
             </listitem>
             <listitem>
                 <para>TEI (<link xlink:href="http://wiki.tei-c.org/index.php/Category:Schematron"
-                        >http://wiki.tei-c.org/index.php/Category:Schematron</link>) – a page that
+                        >http://wiki.tei-c.org/index.php/Category:Schematron</link>) – A page that
                     contains Schematron schemas and SQF that can be used to determine and fix
                     various problems in TEI documents.</para>
             </listitem>
             <listitem>
-                <para>&lt;oXygen/> DITA framework – a built-in framework in oXygen XML Editor for
-                    DITA documents
-                    <?oxy_insert_start author="Adeline" timestamp="20160122T174425+0100"?>which<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T174429+0100" content="and it"?>
-                    also contains a set of Schematron schemas and SQF fixes that can be used to
-                    impose rules and propose fixes to solve errors.</para>
+                <para>&lt;oXygen/> DITA framework – A built-in framework in oXygen XML Editor for
+                    DITA documents that contains a set of Schematron schemas and SQF fixes that can
+                    be used to impose rules and propose fixes to solve errors.</para>
             </listitem>
             <listitem>
                 <para>&lt;oXygen/> User Manual (<link
                         xlink:href="https://github.com/oxygenxml/userguide"
-                        >https://github.com/oxygenxml/userguide</link>) – a public version of the
+                        >https://github.com/oxygenxml/userguide</link>) – A public version of the
                     oXygen XML Editor user guide that provides an example where SQF rules have been
                     implemented on a DITA project.</para>
             </listitem>
@@ -913,12 +818,9 @@ queryBinding="xslt2">
             based upon discussions and feedback that we have received on the <link
                 xlink:href="https://github.com/schematron-quickfix/sqf">SQF GitHub project</link>.
             For example, the <emphasis>call-fix</emphasis> element will be able to reference a group
-            of operations and support will be added to allow
-            <?oxy_insert_start author="Adeline" timestamp="20160122T175227+0100"?>the
-            developer<?oxy_insert_end?><?oxy_delete author="Adeline" timestamp="20160122T175223+0100" content="you"?>
-            to generate the fixes dynamically.</para>
+            of operations and support will be added to allow the developer to generate the fixes
+            dynamically.</para>
     </sect1>
 </article>
 
 
-<?oxy_options track_changes="on"?>
