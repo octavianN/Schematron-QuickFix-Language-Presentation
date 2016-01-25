@@ -206,7 +206,7 @@
             <title>Simple Schematron QuickFix example</title>
             <mediaobject>
                 <imageobject>
-                    <imagedata fileref="sqf_Lang1.png"/>
+                    <imagedata fileref="sqf_Lang.png"/>
                 </imageobject>
             </mediaobject>
         </figure>
