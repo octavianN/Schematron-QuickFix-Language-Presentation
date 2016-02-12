@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="04_DynamicQuickFixes.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<document>
+    <head>
+        <title>Title with more than 20 characters are too long</title>
+    </head>
+    <tbody>
+        <!--<h1>Shorter title</h1>-->
+    </tbody>
+</document>

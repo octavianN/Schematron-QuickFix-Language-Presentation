@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="05_CallFix_b.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<document>
+    <head>
+        <title>Title with more than 20 characters are too long</title>
+    </head>
+    <tbody>
+        <!--<h1>Shorter title</h1>-->
+        <table>
+            <tbody>
+                <tr>
+                    <td>A1</td>
+                    <td>A2</td>
+                    <td>A3</td>
+                    <td>A4</td>
+                </tr>
+                <tr>
+                    <td>B1</td>
+                    <td>B2</td>
+                    <td>B3</td>
+                    <td>B4</td>
+                </tr>
+            </tbody>
+        </table>
+    </tbody>
+</document>
