@@ -1,17 +1,5 @@
 # Schematron QuickFix
 
-Octavian Nadolu
-oXygen XML Editor
-
-octavian_nadolu@oxygenxml.com
-
-Nico Kutscherauer
-data2type GmbH
-
-kutscherauer@schematron-quickfix.com
-
-kutscherauer@data2type.de
-
 Fixing XML validation errors can be challenging for many users, especially if they are not very familiar with the syntax and structure of XML. For many years, development tools have provided ways to allow users to select actions that automatically fix reported issues for certain programming languages (such as Java, C, etc.). This functionality is usually called "Quick Fixes". In a similar way, XML tools provide Quick Fixes for XML validation errors. For instance, Eclipse has included XML Quick Fixes for over 10 years. Another example of this idea is the spell checking functionality, which provides a list of possible corrections and allows the user to select one of them as a replacement for an incorrect word.
 
 The validation of XML documents against DTD, XML Schema, or RELAX NG schema provides a limited set of possible problems and is usually only able to detect basic structural errors (such as a missing element or attribute) and the corresponding automatic fixes are usually rather straightforward. A more interesting case would be if you are using Schematron to identify issues in XML documents, as the fixes in this case may range from trivial to very complex and there is no automatic way of fixing them.
@@ -30,3 +18,8 @@ Schematron QuickFix - XML Prague Presentation
 
 [![Schematron QuickFix – a simple language to specify the actions that will be used to fix the Schematron detected issues](https://img.youtube.com/vi/RLMc0B0di5s/1.jpg "Schematron QuickFix - XML Prague Presentation")](https://www.youtube.com/watch?v=RLMc0B0di5s)
 
+Octavian Nadolu - oXygen XML Editor
+octavian_nadolu@oxygenxml.com
+
+Nico Kutscherauer - data2type GmbH
+kutscherauer@schematron-quickfix.com
